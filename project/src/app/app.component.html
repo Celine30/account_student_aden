@@ -1,34 +1,36 @@
 <mat-sidenav-container>
 
-  <mat-sidenav mode="over" [(opened)]= "opened">
-      <mat-nav-list>
-          <a mat-list-item routerLink="profile"><i class="vert fas fa-shopping-basket mr-3"></i> Mon Profil </a>
-          <a mat-list-item routerLink="follow"><i class="vert fas fa-egg mr-3"></i> Mes démarches </a>
-          <a mat-list-item routerLink="meeting"><i class="vert far fa-comment-dots mr-2"></i> Demande de rendez-vous</a>
-          </mat-nav-list>
-  </mat-sidenav>
+    <mat-sidenav mode="over" [(opened)]= "opened">
+        <mat-nav-list>
+            <a mat-list-item routerLink="profile">Mon Profil </a>
+            <a mat-list-item routerLink="follow"> Mes démarches </a>
+            <a mat-list-item routerLink="meeting">Demande de rendez-vous</a>
+            </mat-nav-list>
+    </mat-sidenav>
 
-  <mat-sidenav-content>
+    <mat-sidenav-content>
 
-      <mat-toolbar color="primary" class="navbar_material mini">
-          <img  src="assets/logo-menu.png" alt="">
-          <div>
-              <span class="link_menu" (click)="opened=!opened">Menu</span>
-          </div>
-      </mat-toolbar>
+        <mat-toolbar color="primary" class="navbar_material mini">
+            <img  src="assets/logo-menu.png" alt="">
+            <div>
+                <span class="link_menu" (click)="opened=!opened">Menu</span>
+            </div>
+        </mat-toolbar>
 
-      <mat-toolbar color="primary" class="navbar_material maxi">
-        <img  src="assets/logo-menu.png" alt="">
-        <div>
-            <span class="link_menu maxi" routerLink="profile">Mon Profil</span>
-            <span class="link_menu maxi" routerLink="follow" >Mes démarches</span>
-            <span class="link_menu maxi" routerLink="meeting">Demande de Rendez-vous</span>
-        </div>
-    </mat-toolbar>
+        <mat-toolbar color="primary" class="navbar_material maxi">
+            <img  src="assets/logo-menu.png" alt="">
+            <div>
+                <span class="link_menu maxi" routerLink="profile">Mon Profil</span>
+                <span class="link_menu maxi" routerLink="follow" >Mes démarches</span>
+                <span class="link_menu maxi" routerLink="meeting">Demande de Rendez-vous</span>
+            </div>
+        </mat-toolbar>
 
-      <div class="container_bloc"><router-outlet></router-outlet></div>
+        <div class="container_bloc"><router-outlet></router-outlet></div>
+        
+        <app-footer-b></app-footer-b>
 
 
-  </mat-sidenav-content>
+    </mat-sidenav-content>
 
 </mat-sidenav-container>
