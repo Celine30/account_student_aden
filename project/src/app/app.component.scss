@@ -1,0 +1,59 @@
+@import '../styles.scss';
+
+mat-toolbar.navbar_material.mini{
+    visibility: hidden;
+   
+}
+mat-toolbar.navbar_material.maxi{
+    visibility: visible;
+    margin-top: -65px;
+}
+
+mat-sidenav-container{
+    min-height: 100%; 
+    .navbar_material{
+        justify-content: space-between;
+        em{
+            margin-left: 1rem;
+            font-size: 0.5em;
+        }
+        .link_menu{
+            cursor: pointer;
+        } 
+        .link_menu.maxi{
+            margin-right:15px;
+        }       
+    }
+    span.link_menu.maxi:focus{
+        outline:none;
+    }
+    mat-sidenav{
+        width: 200px;
+        padding: 10px;
+
+        mat-icon{
+            margin-right: 5px;
+        } 
+    }
+    mat-toolbar{
+        img{
+            height: 50px;
+        }
+    }
+
+    .container_bloc{
+        min-height: 87vh;
+        padding-top: 50px;
+    }
+    
+}    
+
+@media screen and (max-width: 1000px){
+    mat-toolbar.navbar_material.mini{
+        visibility: visible
+    }
+    mat-toolbar.navbar_material.maxi{
+        visibility: hidden
+    }
+
+}
