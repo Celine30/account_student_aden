@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule} from '@angular/forms'
+
 import { MaterialModule} from './material.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +12,12 @@ import { AuthComponent } from './auth/auth.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FollowComponent } from './follow/follow.component';
 import { MeetingComponent } from './meeting/meeting.component';
+import { FooterBComponent } from './footer-b/footer-b.component';
+
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
+
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -17,15 +25,24 @@ import { MeetingComponent } from './meeting/meeting.component';
     AuthComponent,
     ProfileComponent,
     FollowComponent,
-    MeetingComponent
+    MeetingComponent,
+    FooterBComponent,
+ 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthService,
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
