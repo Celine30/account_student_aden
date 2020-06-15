@@ -5,12 +5,16 @@ import { AuthComponent } from './auth/auth.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FollowComponent } from './follow/follow.component';
 import { MeetingComponent } from './meeting/meeting.component';
+import { AuthGuard } from './services/auth-guard.service';
+
+
 
 const routes: Routes = [
   { path:'', component : AuthComponent },
-  { path:'profile', component : ProfileComponent },
-  { path:'meeting', component : MeetingComponent },
-  { path:'follow', component : FollowComponent },
+  { path:'profile', canActivate:[AuthGuard], component : ProfileComponent },
+  { path:'meeting',  canActivate:[AuthGuard], component : MeetingComponent },
+  { path:'follow',  canActivate:[AuthGuard], component : FollowComponent },
+  { path:'auth', component : AuthComponent },
 ];
 
 @NgModule({
