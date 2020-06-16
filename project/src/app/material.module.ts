@@ -9,6 +9,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 
+import {MatStepperModule} from '@angular/material/stepper';
+
+
 @NgModule({
     exports: [  
         MatSidenavModule,
@@ -17,7 +20,8 @@ import {MatInputModule} from '@angular/material/input';
         MatSlideToggleModule,
         MatFormFieldModule,
         MatIconModule,
-        MatInputModule
+        MatInputModule,
+        MatStepperModule
     ]
 })
 
