@@ -17,7 +17,8 @@ import { FooterBComponent } from './footer-b/footer-b.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { NewProfilComponent } from './new-profil/new-profil.component'
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http'
     FollowComponent,
     MeetingComponent,
     FooterBComponent,
+    NewProfilComponent,
  
   ],
   imports: [

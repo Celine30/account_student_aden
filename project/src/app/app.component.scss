@@ -1,5 +1,12 @@
 @import '../styles.scss';
 
+.disabled{
+    color: currentColor;
+    cursor: not-allowed!important;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
 mat-toolbar.navbar_material.mini{
     visibility: hidden;
    

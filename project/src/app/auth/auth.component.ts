@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
@@ -11,9 +12,10 @@ import { AuthService } from '../services/auth.service';
 export class AuthComponent implements OnInit {
   
   AuthForm : FormGroup;
-  authstatus = false;
+  authstatusSubcription :Subscription;
   hide = true;
   error = false;
+  authstatus: boolean;
 
   constructor( private router: Router , private authService: AuthService, private formBuilder : FormBuilder) { }
 
@@ -26,18 +28,22 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.authstatus = this.authService.isAuth
-    this.error = this.authService.error;
+    this.authstatusSubcription = this.authService.authSubject.subscribe(
+      (response) => {
+        console.log(response + ' dans la subcription')
+        this.authstatus = response;
+        this.error = !response;
+        if(response){
+          this.router.navigate(['profile']);
+        }
+      }
+    );
   }
 
   onsignIn(){
     const formValue = this.AuthForm.value;
     this.authService.signIn(formValue)
-    // console.log(formValue)
-    this.error = this.authService.error;
-    this.authstatus = this.authService.isAuth;
-    this.router.navigate(['profile']);
-      }
+    }
     
 
 }

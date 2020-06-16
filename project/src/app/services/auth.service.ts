@@ -6,12 +6,10 @@ import { HttpClientModule, HttpClient, HttpResponse, HttpHeaders } from '@angula
 
 export class AuthService {
 
-
         authSubject = new Subject<boolean>();
 
         isAuth = false;
         error = false;
-
 
         constructor( private httpClient : HttpClient ) { }
 
@@ -20,26 +18,20 @@ export class AuthService {
                 .get('http://localhost:8888/API-aden/index.php?action=back!post&identifiant='+formValue.identifiant+'&mdp='+formValue.mdp)
                 .subscribe(
                         (response) =>{
-                            console.log(response)
+                            console.log(response);
+                            if (response == 'connexion'){
+                                this.isAuth = true;
+                                this.emitPostSubject ()
+                            }else{
+                                this.isAuth = false;
+                                this.emitPostSubject ()
+                            }
                         },
                         (error) => {
                             // console.log('Erreur de chargement' + error);
                             console.log(Object.values(error));
                         })
-
         }      
-
-            
-
-            // console.log('ok ici');
-            // if(this.identifiant==formValue.identifiant){
-            //     this.isAuth
-            //     console.log("this.error = false")
-            //     return this.isAuth = true;
-            // }else{
-            //     console.log("this.error = true")
-            //     return this.error = true;
-            // }
     
         
         
