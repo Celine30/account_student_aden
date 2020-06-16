@@ -1,0 +1,163 @@
+<!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}} -->
+
+<!-- </button> -->
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup"> 
+        <ng-template matStepLabel>Vos Coordonnées</ng-template>
+        <mat-form-field class='mr-5'>
+            <mat-label>Nom</mat-label>
+            <input matInput placeholder="Nom" formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field class='mr-5'>
+            <mat-label>Prénom</mat-label>
+            <input matInput placeholder="Prénom" formControlName="firstname" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field class='mr-5'>
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="email" formControlName="email">
+        </mat-form-field>
+        <br>
+        <mat-form-field class='mr-5'>
+            <mat-label>N°tel portable</mat-label>
+            <input matInput placeholder="n°tel portable" formControlName="phone1">
+        </mat-form-field>
+        <mat-form-field class='mr-5'>
+            <mat-label>N°tel fixe</mat-label>
+            <input matInput placeholder="n°tel fixe" formControlName="phone2" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field class='mr-5'>
+            <mat-label>Adresse</mat-label>
+            <input matInput placeholder="Adresse" formControlName="adress">
+        </mat-form-field>
+        <br>
+        <mat-form-field class='mr-5'>
+            <mat-label>Code Postal</mat-label>
+            <input matInput placeholder="Code Postal" formControlName="postal" required>
+        </mat-form-field>
+        <mat-form-field class='mr-5'>
+            <mat-label>Ville</mat-label>
+            <input matInput placeholder="Ville" formControlName="city" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field class='mr-5'>
+            <mat-label>Département</mat-label>
+            <input matInput placeholder="Département" formControlName="department" required>
+        </mat-form-field>
+        <mat-form-field class='mr-5'>
+            <mat-label>Region</mat-label>
+            <input matInput placeholder="Région" formControlName="region" required>
+        </mat-form-field>
+        <div>
+            <button mat-button matStepperNext>Suivant</button>
+        </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Vos Informations </ng-template>
+        <mat-form-field class='mr-5'>
+            <mat-label>date de naissance</mat-label>
+            <input matInput formControlName="birthday" placeholder="10/08/1981"
+                    required>
+        </mat-form-field>
+        <mat-form-field class='mr-5'>
+            <mat-label>à</mat-label>
+            <input matInput formControlName="citybirthday" placeholder="Verdun"
+                    required>
+        </mat-form-field>
+        <mat-form-field class='mr-5'>
+            <mat-label>Pays</mat-label>
+            <input matInput formControlName="countrybirthday" placeholder="country"
+                    required>
+        </mat-form-field>
+        <br>
+        <mat-form-field class='mr-5'>
+            <mat-label>nationalité</mat-label>
+            <input matInput formControlName="nationality" placeholder="Française"
+                    required>
+        </mat-form-field>
+        <br>
+        <mat-form-field class='mr-5'>
+            <mat-label>Statut</mat-label>
+            <input matInput formControlName="statut" placeholder="2 81 34 933 O38 01"
+                    required>
+        </mat-form-field>
+        <br>
+        <mat-form-field class='mr-5'>
+            <mat-label>Numéro de Sécurité sociale</mat-label>
+            <input matInput formControlName="numberSecu" placeholder="2 81 34 933 O38 01"
+                    required>
+        </mat-form-field>
+        <br>
+        <mat-form-field class='mr-5'>
+            <mat-label>Numéro de Permis de conduire</mat-label>
+            <input matInput formControlName="licence" placeholder="PC343535643533"
+                    required>
+        </mat-form-field>
+        <mat-form-field class='mr-5'>
+            <mat-label>Véhicule</mat-label>
+            <input matInput formControlName="vehicule" placeholder="Y/N"
+                    required>
+        </mat-form-field>
+        <br>
+        <mat-form-field class='mr-5'>
+            <mat-label>Mobile</mat-label>
+            <input matInput formControlName="mobile" placeholder="Y/N"
+                    required>
+        </mat-form-field>
+        <br>
+        <mat-form-field class='mr-5'>
+            <mat-label>Reconnaissance Handicapée</mat-label>
+            <input matInput formControlName="handicapped" placeholder="Y/N"
+                    required>
+        </mat-form-field>
+        <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button matStepperNext>Suivant</button>
+        </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="threeFormGroup">
+        <form [formGroup]="threeFormGroup">
+            <ng-template matStepLabel>La formations souhaitée </ng-template>
+            <mat-form-field class='mr-5'>
+                <mat-label>Formation souhaitée</mat-label>
+                <input matInput formControlName="training" placeholder="Licence CSI"
+                        required>
+            </mat-form-field>
+            <br>
+            <mat-form-field class='mr-5'>
+                <mat-label>Financement souhaité</mat-label>
+                <input matInput formControlName="funding" placeholder="Alternance"
+                        required>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Retour</button>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="forFormGroup">
+        <form [formGroup]="forFormGroup">
+            <ng-template matStepLabel>Création du Compte</ng-template>
+            <mat-form-field class='mr-5'>
+                <mat-label>Créer un mot de passe</mat-label>
+                <input matInput formControlName="password" placeholder=""
+                        required>
+            </mat-form-field>
+    <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button (click)="stepper.reset()">Reset</button>
+    <button mat-button (click)="stepper.onSubmit()">Envoyer</button>
+    </div>
+</form>
+</mat-step>
+</mat-vertical-stepper>

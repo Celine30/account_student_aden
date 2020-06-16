@@ -6,7 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { FollowComponent } from './follow/follow.component';
 import { MeetingComponent } from './meeting/meeting.component';
 import { AuthGuard } from './services/auth-guard.service';
-
+import { NewProfilComponent } from './new-profil/new-profil.component'
 
 
 const routes: Routes = [
@@ -14,6 +14,7 @@ const routes: Routes = [
   { path:'profile', canActivate:[AuthGuard], component : ProfileComponent },
   { path:'meeting',  canActivate:[AuthGuard], component : MeetingComponent },
   { path:'follow',  canActivate:[AuthGuard], component : FollowComponent },
+  { path:'newProfil', component : NewProfilComponent },
   { path:'auth', component : AuthComponent },
 ];
 
