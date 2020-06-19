@@ -189,7 +189,7 @@
         </mat-form-field>
         <mat-form-field class='mr-5'>
             <mat-label>N°tel fixe</mat-label>
-            <input matInput placeholder="n°tel fixe" formControlName="phone2" required>
+            <input matInput placeholder="n°tel fixe" formControlName="phone2">
         </mat-form-field>
         <br>
         <mat-form-field class='mr-5'>
@@ -207,15 +207,136 @@
         </mat-form-field>
         <br>
         <mat-form-field class='mr-5'>
-            <mat-label>Département</mat-label>
-            <input matInput placeholder="Département" formControlName="department" required>
+        <mat-label >Departement</mat-label>
+        <mat-select formControlName="department"required>
+            <mat-option>01	Ain</mat-option> 
+            <mat-option>02	Aisne</mat-option>
+            <mat-option>03	Allier</mat-option>
+            <mat-option>04	Alpes-de-Haute-Provence</mat-option>
+            <mat-option>05	Hautes-Alpes</mat-option>
+            <mat-option>06	Alpes-Maritimes</mat-option>
+            <mat-option>07	Ardèche</mat-option>
+            <mat-option>08	Ardennes</mat-option>
+            <mat-option>09	Ariège</mat-option>
+            <mat-option>10	Aube</mat-option>
+            <mat-option>11	Aude</mat-option>
+            <mat-option>12	Aveyron</mat-option>
+            <mat-option>13	Bouches-du-Rhône</mat-option>
+            <mat-option>14	Calvados</mat-option>
+            <mat-option>15	Cantal</mat-option>
+            <mat-option>16	Charente</mat-option>
+            <mat-option>17	Charente-Maritime</mat-option>
+            <mat-option>18	Cher</mat-option>
+            <mat-option>19	Corrèze</mat-option>
+            <mat-option>2A	Corse-du-Sud</mat-option>
+            <mat-option>2B	Haute-Corse</mat-option>
+            <mat-option>21	Côte-d'Or</mat-option>
+            <mat-option>22	Côtes d'Armor</mat-option>
+            <mat-option>23	Creuse</mat-option>
+            <mat-option>24	Dordogne</mat-option>
+            <mat-option>25	Doubs</mat-option>
+            <mat-option>26	Drôme</mat-option>
+            <mat-option>27	Eure</mat-option>
+            <mat-option>28	Eure-et-Loir</mat-option>
+            <mat-option>29	Finistère</mat-option>
+            <mat-option>30	Gard</mat-option>
+            <mat-option>31	Haute-Garonne</mat-option>
+            <mat-option>32	Gers</mat-option>
+            <mat-option>33	Gironde</mat-option>
+            <mat-option>34	Hérault</mat-option>
+            <mat-option>35	Ille-et-Vilaine</mat-option>
+            <mat-option>36	Indre</mat-option>
+            <mat-option>37	Indre-et-Loire</mat-option>
+            <mat-option>38	Isère</mat-option>
+            <mat-option>39	Jura</mat-option>
+            <mat-option>40	Landes</mat-option>
+            <mat-option>41	Loir-et-Cher</mat-option>
+            <mat-option>42	Loire</mat-option>
+            <mat-option>43	Haute-Loire</mat-option>
+            <mat-option>44	Loire-Atlantique</mat-option>
+            <mat-option>45	Loiret</mat-option>
+            <mat-option>46	Lot</mat-option>
+            <mat-option>47	Lot-et-Garonne</mat-option>
+            <mat-option>48	Lozère</mat-option>
+            <mat-option>49	Maine-et-Loire</mat-option>
+            <mat-option>50	Manche</mat-option>
+            <mat-option>51	Marne</mat-option>
+            <mat-option>52	Haute-Marne</mat-option>
+            <mat-option>53	Mayenne</mat-option>
+            <mat-option>54	Meurthe-et-Moselle</mat-option>
+            <mat-option>55	Meuse</mat-option>
+            <mat-option>56	Morbihan</mat-option>
+            <mat-option>57	Moselle</mat-option>
+            <mat-option>58	Nièvre</mat-option>
+            <mat-option>59	Nord</mat-option>
+            <mat-option>60	Oise</mat-option>
+            <mat-option>61	Orne</mat-option>
+            <mat-option>62	Pas-de-Calais</mat-option>
+            <mat-option>63	Puy-de-Dôme</mat-option>
+            <mat-option>64	Pyrénées-Atlantiques</mat-option>
+            <mat-option>65	Hautes-Pyrénées</mat-option>
+            <mat-option>66	Pyrénées-Orientales</mat-option>
+            <mat-option>67	Bas-Rhin</mat-option>
+            <mat-option>68	Haut-Rhin</mat-option>
+            <mat-option>69	Rhône</mat-option>
+            <mat-option>70	Haute-Saône</mat-option>
+            <mat-option>71	Saône-et-Loire</mat-option>
+            <mat-option>72	Sarthe</mat-option>
+            <mat-option>73	Savoie</mat-option>
+            <mat-option>74	Haute-Savoie</mat-option>
+            <mat-option>75	Paris</mat-option>
+            <mat-option>76	Seine-Maritime</mat-option>
+            <mat-option>77	Seine-et-Marne</mat-option>
+            <mat-option>78	Yvelines</mat-option>
+            <mat-option>79	Deux-Sèvres</mat-option>
+            <mat-option>80	Somme</mat-option>
+            <mat-option>81	Tarn</mat-option>
+            <mat-option>82	Tarn-et-Garonne</mat-option>
+            <mat-option>84	Vaucluse</mat-option>
+            <mat-option>83	Var</mat-option>
+            <mat-option>85	Vendée</mat-option>
+            <mat-option>86	Vienne</mat-option>
+            <mat-option>87	Haute-Vienne</mat-option>
+            <mat-option>88	Vosges</mat-option>
+            <mat-option>89	Yonne</mat-option>
+            <mat-option>90	Territoire de Belfort</mat-option>
+            <mat-option>91	Essonne</mat-option>
+            <mat-option>92	Hauts-de-Seine</mat-option>
+            <mat-option>93	Seine-St-Denis</mat-option>
+            <mat-option>94	Val-de-Marne</mat-option>
+            <mat-option>95	Val-D'Oise</mat-option>
+            <mat-option>971	Guadeloupe</mat-option>
+            <mat-option>972	Martinique</mat-option>
+            <mat-option>973	Guyane</mat-option>
+            <mat-option>974	La Réunion</mat-option>
+            <mat-option>976	Mayotte</mat-option>
+        </mat-select>
         </mat-form-field>
         <mat-form-field class='mr-5'>
-            <mat-label>Region</mat-label>
-            <input matInput placeholder="Région" formControlName="region" required>
+            <mat-label >Region</mat-label>
+            <mat-select formControlName="region" required>
+                <mat-option>Auvergne-Rhône-Alpes</mat-option> 
+                <mat-option>Bourgogne-Franche-Comté</mat-option> 
+                <mat-option>Bretagne</mat-option> 
+                <mat-option>Centre-Val de Loire</mat-option> 
+                <mat-option>Corse</mat-option> 
+                <mat-option>Grand Est</mat-option> 
+                <mat-option>Hauts-de-France</mat-option> 
+                <mat-option>Île-de-France</mat-option> 
+                <mat-option>Normandie</mat-option> 
+                <mat-option>Nouvelle-Aquitaine</mat-option> 
+                <mat-option>Occitanie</mat-option> 
+                <mat-option>Pays de la Loire</mat-option> 
+                <mat-option>Provence-Alpes-Côte d'Azur</mat-option> 
+                <mat-option>Guadeloupe</mat-option> 
+                <mat-option>Martinique</mat-option> 
+                <mat-option>Guyane</mat-option> 
+                <mat-option>La Réunion</mat-option> 
+                <mat-option>Mayotte</mat-option> 
+            </mat-select>
         </mat-form-field>
-        <div>
-            <button mat-button matStepperNext type="button">Next</button>
+        <div class='container_button_form d-flex justify-content-end'>
+            <button  mat-raised-button color="primary" matStepperNext > Suivant  <span class="material-icons">keyboard_arrow_right</span> </button>
         </div>
     </mat-step>
 
@@ -261,9 +382,11 @@
                     required>
         </mat-form-field>
         <mat-form-field class='mr-5'>
-            <mat-label>Véhicule</mat-label>
-            <input matInput formControlName="vehicule" placeholder="Y/N"
-                    required>
+            <mat-label >Véhicule</mat-label>
+            <mat-select formControlName="vehicule"required>
+                <mat-option>Oui </mat-option> 
+                <mat-option>Non</mat-option> 
+            </mat-select>
         </mat-form-field>
         <br>
         <mat-form-field class='mr-5'>
@@ -273,13 +396,15 @@
         </mat-form-field>
         <br>
         <mat-form-field class='mr-5'>
-            <mat-label>Reconnaissance Handicapée</mat-label>
-            <input matInput formControlName="handicapped" placeholder="Y/N"
-                    required>
+            <mat-label >Reconnaissance handicapée</mat-label>
+            <mat-select formControlName="handicapped"required>
+                <mat-option>Oui </mat-option> 
+                <mat-option>Non</mat-option> 
+            </mat-select>
         </mat-form-field>
-        <div>
-            <button mat-button matStepperPrevious type="button">Back</button>
-            <button mat-button matStepperNext type="button">Next</button>
+        <div class='container_button_form d-flex justify-content-between'>
+            <button  mat-raised-button color="primary" matStepperPrevious type="button"> <span class="material-icons">keyboard_arrow_left</span> Retour </button>
+            <button  mat-raised-button color="primary" matStepperNext type="button"> Suivant <span class="material-icons">keyboard_arrow_right</span> </button>
         </div>
     </mat-step>
 
@@ -297,9 +422,9 @@
                 <input matInput formControlName="funding" placeholder="Alternance"
                         required>
             </mat-form-field>
-            <div>
-                <button mat-button matStepperPrevious type="button">Retour</button>
-                <button mat-button matStepperNext type="button">Suivant</button>
+            <div class='container_button_form d-flex justify-content-between'>
+                <button  mat-raised-button color="primary" matStepperPrevious type="button"> <span class="material-icons">keyboard_arrow_left</span> Retour </button>
+                <button  mat-raised-button color="primary" matStepperNext type="button"> Suivant <span class="material-icons">keyboard_arrow_right</span> </button>
             </div>
 
     </mat-step>
@@ -309,13 +434,16 @@
             <ng-template matStepLabel>Création du Compte</ng-template>
             <mat-form-field class='mr-5'>
                 <mat-label>Créer un mot de passe</mat-label>
-                <input matInput formControlName="password" placeholder=""
-                        required>
+                <input matInput formControlName="password" placeholder="" required>
             </mat-form-field>
-    <div>
-    <button mat-button matStepperPrevious type="button">Back</button>
-    <button mat-button (click)="stepper.reset()" type="button">Reset</button>
-    <button mat-button type="button" (click)="onSubmit()">Envoyer</button>
+            <mat-form-field class='mr-5'>
+                <mat-label>Confirmation du mot de passe</mat-label>
+                <input matInput formControlName="password" placeholder="" required>
+            </mat-form-field>
+    <div class='container_button_form d-flex justify-content-between'>
+        <button mat-raised-button color="primary" matStepperPrevious type="button"> <span class="material-icons">keyboard_arrow_left</span> Retour </button>
+        <button mat-stroked-button color="warn" (click)="stepper.reset()" type="button">Reset <span class="material-icons">clear</span></button>
+        <button mat-raised-button color="primary" type="button" (click)="onSubmit()">Envoyer <span class="material-icons">send</span></button>
     </div>
 
     </mat-step>

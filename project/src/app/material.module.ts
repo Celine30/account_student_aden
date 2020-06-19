@@ -10,6 +10,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import {MatStepperModule} from '@angular/material/stepper';
         MatFormFieldModule,
         MatIconModule,
         MatInputModule,
-        MatStepperModule
+        MatStepperModule,
+        MatSelectModule,
+        MatButtonModule
     ]
 })
 

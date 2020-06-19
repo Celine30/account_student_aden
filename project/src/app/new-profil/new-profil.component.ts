@@ -26,51 +26,51 @@ export class NewProfilComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.firstFormGroup = this._formBuilder.group({
-      name: ['', Validators.required],
-      firstname: ['', Validators.required],
-      email: ['', Validators.required],
-      phone1: ['', Validators.required],
-      phone2: ['', Validators.required],
-      adress: ['', Validators.required],
-      postal: ['', Validators.required],
-      city: ['', Validators.required],
-      department: ['', Validators.required],
-      region: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      birthday: ['', Validators.required],
-      citybirthday: ['', Validators.required],
-      countrybirthday: ['', Validators.required],
-      nationality: ['', Validators.required],
-      statut: ['', Validators.required],
-      numberSecu: ['', Validators.required],
-      licence: ['', Validators.required],
-      vehicule: ['', Validators.required],
-      mobile: ['', Validators.required],
-      handicapped: ['', Validators.required]
-    });
-    this.threeFormGroup = this._formBuilder.group({
-      training: ['', Validators.required],
-      funding: ['', Validators.required],
+    // this.firstFormGroup = this._formBuilder.group({
+    //   name: ['', Validators.required],
+    //   firstname: ['', Validators.required],
+    //   email: ['', Validators.required],
+    //   phone1: ['',Validators.required ],
+    //   phone2: ['', Validators.required],
+    //   adress: ['', Validators.required],
+    //   postal: ['', Validators.required],
+    //   city: ['', Validators.required],
+    //   department: ['', Validators.required],
+    //   region: ['', Validators.required]
+    // });
+    // this.secondFormGroup = this._formBuilder.group({
+    //   birthday: ['', Validators.required],
+    //   citybirthday: ['', Validators.required],
+    //   countrybirthday: ['', Validators.required],
+    //   nationality: ['', Validators.required],
+    //   statut: ['', Validators.required],
+    //   numberSecu: ['', Validators.required],
+    //   licence: ['', Validators.required],
+    //   vehicule: ['', Validators.required],
+    //   mobile: ['', Validators.required],
+    //   handicapped: ['', Validators.required]
+    // });
+    // this.threeFormGroup = this._formBuilder.group({
+    //   training: ['', Validators.required],
+    //   funding: ['', Validators.required],
       
-    });
-    this.forFormGroup = this._formBuilder.group({
-      password: ['', Validators.required]      
-    });
+    // });
+    // this.forFormGroup = this._formBuilder.group({
+    //   password: ['', Validators.required]      
+    // });
     // this.secondFormGroup = this._formBuilder.group({
     //   cotrol: ['', Validators.required],
     // });
     this.formGroup = this._formBuilder.group({
       formArray: this._formBuilder.array([
         this._formBuilder.group({
-          name: ['', Validators.required],
-          firstname: ['', Validators.required],
-          email: ['', Validators.required],
-          phone1: ['', Validators.required],
-          phone2: ['', Validators.required],
+          name: ['', [Validators.required , Validators.pattern('[A-Z]*[a-z]*[àâàéèêëùûüôîïç]*')]],
+          firstname: ['', [Validators.required , Validators.pattern('[A-Z]*[a-z]*[àâàéèêëùûüôîïç]*')]],
+          email: ['', [Validators.required , Validators.pattern('^[A-Za-z0-9._-]+@[A-Za-z0-9]+\.[a-z]{2,6}')]],
+          phone1: ['', [Validators.required , Validators.pattern('^(0[6-7]{1})([/ _.-]?[0-9]{2}){4}')]],
+          phone2: ['', [Validators.pattern('^(0[1-5]{1})([/ _.-]?[0-9]{2}){4}')]],
           adress: ['', Validators.required],
-          postal: ['', Validators.required],
+          postal: ['', [ Validators.required, Validators.pattern('[0-9]{5}')]],
           city: ['', Validators.required],
           department: ['', Validators.required],
           region: ['', Validators.required]
