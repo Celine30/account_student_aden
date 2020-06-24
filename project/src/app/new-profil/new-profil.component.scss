@@ -1,5 +1,43 @@
+.separator{
+    max-width: 80px;
+    margin:auto;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+.blue, .red, .green, .purple, .yellow{
+    height: 22px;
+    width: 12px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 0px 0 rgba(0, 0, 0, 0.5);
+}
+.blue{
+    background-color: blue;
+}
+.red{
+    background-color: red;
+}
+.green{
+    background-color: green;
+}
+.purple{
+    background-color: purple;
+}
+.yellow{
+    background-color: yellow;
+}
+
 .container_button_form{
     max-width: 410px;
+}
+
+.container_form_membership{
+    background-color: white;
+    max-width: 840px;
+    margin:auto;
+    padding: 20px;
+    box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.2), 0 -6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 15px ;
 }
 
 @media screen and (max-width: 540px){
@@ -7,3 +45,4 @@
     max-width: 180px;
     }
 }
+
