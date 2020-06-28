@@ -396,8 +396,8 @@
                         <mat-label>Statut</mat-label>
                         <mat-select formControlName="statut"required>
                             <mat-option value="actif" >En activité professionnelle </mat-option> 
-                            <mat-option value="etudiant" >Etudiant</mat-option> 
-                            <mat-option value="chomage" > Demandeur d'emploi</mat-option> 
+                            <mat-option value="etudiant" >Etudiant(e)</mat-option> 
+                            <mat-option value="chomage" > Demandeur(se) d'emploi</mat-option> 
                             <mat-option value="autre" > Autre</mat-option> 
                         </mat-select>
                     </mat-form-field>
@@ -446,19 +446,29 @@
         </mat-step>
 
         <mat-step [stepControl]="threeFormGroup">
-            <ng-template matStepLabel>La formations souhaitée </ng-template>
+            <ng-template matStepLabel>La formation souhaitée </ng-template>
                 <form [formGroup]="threeFormGroup">
                     <mat-form-field class='mr-5'>
                         <mat-label>Formation souhaitée</mat-label>
-                        <input matInput formControlName="training" placeholder="Licence CSI"
-                                required>
+                            <mat-select formControlName="training"required (ngModelChange)="select($event)">
+                                <mat-option *ngFor="let formation of formations" value={{formation.ID}} >{{formation.name}}</mat-option>
+                            </mat-select>
                     </mat-form-field>
-                    <br>
+                    <div *ngIf="f3.training.dirty" > 
+                        <p>durée de la formation: {{formationSelection['duration']}} </p> 
+                        <p *ngIf="formationSelection['mention']!=''" >mention de la formation: {{formationSelection['mention']}} </p>
+                    
                     <mat-form-field class='mr-5'>
                         <mat-label>Financement souhaité</mat-label>
-                        <input matInput formControlName="funding" placeholder="Alternance"
-                                required>
+                        <mat-select formControlName="funding"required>
+                            <mat-option value="AutoFinancement" >Auto-financement</mat-option> 
+                            <mat-option value="Alternance" >Alternance</mat-option> 
+                            <mat-option value="Region" >Region</mat-option> 
+                            <mat-option value="PoleEmploi" >Pole Emploi</mat-option>
+                            <mat-option value="Organisme" >Organisme de Formation</mat-option>  
+                        </mat-select>
                     </mat-form-field>
+                </div>
                     <div class='container_button_form d-flex justify-content-between'>
                         <button  mat-raised-button color="primary" matStepperPrevious type="button"> <span class="material-icons">keyboard_arrow_left</span> Retour </button>
                         <button  mat-raised-button color="primary" matStepperNext type="button"> Suivant <span class="material-icons">keyboard_arrow_right</span> </button>
@@ -467,22 +477,36 @@
             </mat-step>
 
         <mat-step [stepControl]="forFormGroup">
-           
             <ng-template matStepLabel>Création du Compte</ng-template>
                 <form [formGroup]="forFormGroup">
                     <mat-form-field class='mr-5'>
                         <mat-label>Créer un mot de passe</mat-label>
-                        <input matInput formControlName="password" placeholder="" required [(ngModel)]='pw1'>
+                        <input matInput name="password" id="password" formControlName="password" placeholder="" required [type]="hide ? 'password' : 'text'">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-hint *ngIf="f4.password.hasError('pattern') && (f4.password.touched || f4.password.dirty)" class=" text-left text-danger mess_error mb-5" role="alert" >
+                            Le mot de passe doit contenir au moins: <br>
+                            une majuscule <br>
+                            une minuscule <br>
+                            un caractère spécial <br>
+                        </mat-hint>
                     </mat-form-field>
                     <br>
                     <mat-form-field class='mr-5'>
                         <mat-label>Confirmation du mot de passe</mat-label>
-                        <input matInput formControlName="confirmPassword" placeholder="" required [(ngModel)]='pw2'>
+                        <input matInput name="confirmPassword" id="confirmPassword" formControlName="confirmPassword" required [type]="hideBis ? 'password' : 'text'">
+                        <button mat-icon-button matSuffix (click)="hideBis = !hideBis" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideBis">
+                        <mat-icon>{{hideBis ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-hint *ngIf="forFormGroup.errors?.controlPass && (f4.confirmPassword.touched || f4.confirmPassword.dirty)" class=" text-left text-danger mess_error" role="alert" >
+                            Les mots de passe ne sont pas identique
+                        </mat-hint>
                     </mat-form-field>
                 <div class='container_button_form d-flex justify-content-between'>
                     <button mat-raised-button color="primary" matStepperPrevious type="button"> <span class="material-icons">keyboard_arrow_left</span> Retour </button>
                     <button mat-stroked-button color="warn" (click)="stepper.reset()" type="button">Reset <span class="material-icons">clear</span></button>
-                    <button mat-raised-button color="primary" type="button" (click)="form1(); form2()">Envoyer <span class="material-icons ml-2">send</span></button>
+                    <button mat-raised-button color="primary" type="button" (click)="form1(); form2(); form3(); form4()">Envoyer <span class="material-icons ml-2">send</span></button>
                 </div>
                 </form>
         </mat-step>

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators, ValidatorFn} from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
-// import { ValidatorFn } from '@angular/forms';
+import { HttpClientModule, HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http'
+import { FormationUnit} from '../formationUnit';
+import { controlPass } from '../controlPass';
 
 @Component({
   selector: 'app-new-profil',
@@ -12,22 +14,25 @@ import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/materia
     {provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}},
   ]   
 })
-export class NewProfilComponent implements OnInit {
-  isLinear = false;
 
+export class NewProfilComponent implements OnInit {
+
+  hide = true;
+  hideBis = true;
+
+  isLinear = false;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   threeFormGroup: FormGroup;
   forFormGroup: FormGroup;
   
+  formations: any = [];
+  formationSelection:object
 
-
-  constructor(private _formBuilder: FormBuilder, private dateAdapter: DateAdapter<Date>) {
+  constructor(private _formBuilder: FormBuilder, private dateAdapter: DateAdapter<Date>, private httpClient : HttpClient) {
     this.dateAdapter.setLocale('fr'); 
   }
-
-
 
   startDate = new Date(1990, 0, 1);
   pw1:string;
@@ -70,19 +75,17 @@ export class NewProfilComponent implements OnInit {
     this.forFormGroup = this._formBuilder.group({
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#&§!ç$*€£%?]).{5,}')]],
       confirmPassword: ['', Validators.required]  
-    });
+    } , { validators: controlPass });
+  
+    this.EditFormation();
 
-    
     }
 
   get f() { return this.firstFormGroup.controls; }
   get f2() { return this.secondFormGroup.controls; }
-
-  onSubmit(){
-    console.log('envoyer');
-    
-  }
-
+  get f3() { return this.threeFormGroup.controls; }
+  get f4() { return this.forFormGroup.controls; }
+  
   shaping(event:KeyboardEvent){
     if(event.keyCode == 8  ){
         this.secondFormGroup.get('numberSecu').setValue("");
@@ -111,6 +114,22 @@ export class NewProfilComponent implements OnInit {
     } 
   }
 
+  select(val){
+    console.log(val);
+    
+    for (const formation of this.formations) {
+     
+      if(formation.ID==val){
+        this.formationSelection = new FormationUnit(
+          formation.name,
+          formation.duration,
+          formation.mention
+        )
+        console.log(this.formationSelection)
+      }
+    }
+  }
+
   form1(){
     console.log(this.firstFormGroup.value);
   }
@@ -124,7 +143,19 @@ export class NewProfilComponent implements OnInit {
     console.log(this.forFormGroup.value);
   }
   
-  
+  EditFormation()  {
+    this.httpClient
+    .get('http://localhost:8888/API-aden/index.php?action=back!edit_formation')
+    .subscribe(
+            (response) =>{
+                console.log(response);
+                this.formations = response
+            },
+            (error) => {
+                // console.log('Erreur de chargement' + error);
+                console.log(Object.values(error));
+            })
+}      
 
 }
 
