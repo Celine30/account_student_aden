@@ -172,7 +172,6 @@
     <div class="purple"></div>
     <div class="yellow"></div>
 </div>
-
 </div>
 
 <div class="container_form_membership">
@@ -215,7 +214,7 @@
                     <br>
                     <mat-form-field class='mr-5'>
                         <mat-label>Adresse</mat-label>
-                        <input matInput placeholder="Adresse" formControlName="adress" required>
+                        <input matInput placeholder="Adresse" formControlName="address" required>
                     </mat-form-field>
                     <br>
                     <mat-form-field class='mr-5'>
@@ -506,7 +505,7 @@
                 <div class='container_button_form d-flex justify-content-between'>
                     <button mat-raised-button color="primary" matStepperPrevious type="button"> <span class="material-icons">keyboard_arrow_left</span> Retour </button>
                     <button mat-stroked-button color="warn" (click)="stepper.reset()" type="button">Reset <span class="material-icons">clear</span></button>
-                    <button mat-raised-button color="primary" type="button" (click)="form1(); form2(); form3(); form4()">Envoyer <span class="material-icons ml-2">send</span></button>
+                    <button mat-raised-button color="primary" type="button" (click)="formGeneral()">Envoyer <span class="material-icons ml-2">send</span></button>
                 </div>
                 </form>
         </mat-step>

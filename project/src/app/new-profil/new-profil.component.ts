@@ -5,6 +5,9 @@ import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/materia
 import { HttpClientModule, HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http'
 import { FormationUnit} from '../formationUnit';
 import { controlPass } from '../controlPass';
+import { ProfilUnit } from '../profilUnit'
+import { formatDate } from '@angular/common';
+
 
 @Component({
   selector: 'app-new-profil',
@@ -28,19 +31,19 @@ export class NewProfilComponent implements OnInit {
   forFormGroup: FormGroup;
   
   formations: any = [];
-  formationSelection:object
+  formationSelection:object;
+
+  newProfil: object;
+  
+  startDate = new Date(1990, 0, 1);
+  
+  regex = new RegExp("[0-9]{13}")
+
 
   constructor(private _formBuilder: FormBuilder, private dateAdapter: DateAdapter<Date>, private httpClient : HttpClient) {
     this.dateAdapter.setLocale('fr'); 
   }
 
-  startDate = new Date(1990, 0, 1);
-  pw1:string;
-  pw2:string;
-  numberSecu:string;
-  formSecu = this.numberSecu+'ici';
-  value:string ='';
-  regex = new RegExp("[0-9]{13}")
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
@@ -49,7 +52,7 @@ export class NewProfilComponent implements OnInit {
       email: ['', [Validators.required , Validators.pattern('^[A-Za-z0-9._-]+@[A-Za-z0-9]+[.][a-z]{2,6}')]],
       phone1: ['', [Validators.pattern('^(0[6-7]{1})([/ _.-]?[0-9]{2}){4}')]],
       phone2: ['', [Validators.pattern('^(0[1-59]{1})([/ _.-]?[0-9]{2}){4}')]],
-      adress: ['', Validators.required],
+      address: ['', Validators.required],
       postal: ['',[Validators.required, Validators.pattern('[0-9]{5}')]],
       city: ['', [Validators.required , Validators.pattern('.+[^0-9]')]],
       department: ['', Validators.required],
@@ -78,8 +81,7 @@ export class NewProfilComponent implements OnInit {
     } , { validators: controlPass });
   
     this.EditFormation();
-
-    }
+  }
 
   get f() { return this.firstFormGroup.controls; }
   get f2() { return this.secondFormGroup.controls; }
@@ -116,9 +118,7 @@ export class NewProfilComponent implements OnInit {
 
   select(val){
     console.log(val);
-    
     for (const formation of this.formations) {
-     
       if(formation.ID==val){
         this.formationSelection = new FormationUnit(
           formation.name,
@@ -130,17 +130,55 @@ export class NewProfilComponent implements OnInit {
     }
   }
 
-  form1(){
-    console.log(this.firstFormGroup.value);
-  }
-  form2(){
-    console.log(this.secondFormGroup.value);
-  }
-  form3(){
-    console.log(this.threeFormGroup.value);
-  }
-  form4(){
-    console.log(this.forFormGroup.value);
+  // form1(){
+  //   console.log(this.firstFormGroup.value);
+  // }
+  // form2(){
+  //   console.log(this.secondFormGroup.value);
+  // }
+  // form3(){
+  //   console.log(this.threeFormGroup.value);
+  // }
+  // form4(){
+  //   console.log(this.forFormGroup.value);
+  // }
+
+  formGeneral(){
+    const format = 'yyyy-MM-dd';
+    const locale = 'en-fr';
+    let formattedDate = formatDate(this.secondFormGroup.value.birthday, format, locale);
+
+    let password = 
+
+    this.newProfil = new ProfilUnit(
+      (this.firstFormGroup.value.name).toUpperCase(), 
+      (this.firstFormGroup.value.firstname.charAt(0).toUpperCase() + this.firstFormGroup.value.firstname.substring(1).toLowerCase()),
+      this.firstFormGroup.value.email,
+      this.firstFormGroup.value.phone1,
+      this.firstFormGroup.value.phone2,
+      this.firstFormGroup.value.address,
+      this.firstFormGroup.value.postal,
+      (this.firstFormGroup.value.city.charAt(0).toUpperCase() + this.firstFormGroup.value.city.substring(1).toLowerCase()),
+      this.firstFormGroup.value.department,
+      this.firstFormGroup.value.region,
+      formattedDate,
+      (this.secondFormGroup.value.citybirthday.charAt(0).toUpperCase() + this.secondFormGroup.value.citybirthday.substring(1).toLowerCase()),
+      this.secondFormGroup.value.countrybirthday.toUpperCase(),
+      (this.secondFormGroup.value.nationality.charAt(0).toUpperCase() + this.secondFormGroup.value.nationality.substring(1).toLowerCase()),
+      this.secondFormGroup.value.statut,
+      this.secondFormGroup.value.numberSecu,
+      this.secondFormGroup.value.licence,
+      this.secondFormGroup.value.vehicule,
+      this.secondFormGroup.value.mobile,
+      this.secondFormGroup.value.handicapped,
+      this.threeFormGroup.value.training,
+      this.threeFormGroup.value.funding,
+      this.forFormGroup.value.password,
+      this.forFormGroup.value.confirmPassword
+    )
+    console.log (this.newProfil);
+    
+    this.AddProfil(this.newProfil);
   }
   
   EditFormation()  {
@@ -152,10 +190,21 @@ export class NewProfilComponent implements OnInit {
                 this.formations = response
             },
             (error) => {
-                // console.log('Erreur de chargement' + error);
                 console.log(Object.values(error));
             })
-}      
+  }  
+
+  AddProfil($profil) {
+    this.httpClient
+    .post('http://localhost:8888/API-aden/index.php?action=back!newProfil', JSON.stringify($profil))
+    .subscribe(
+            (response) =>{
+              console.log(response)
+            },
+            (error) => {
+                console.log(Object.values(error));
+            })
+  }  
 
 }
 
