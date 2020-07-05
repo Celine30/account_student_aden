@@ -13,7 +13,7 @@ const routes: Routes = [
   { path:'', component : AuthComponent },
   { path:'profile', canActivate:[AuthGuard], component : ProfileComponent },
   { path:'meeting',  canActivate:[AuthGuard], component : MeetingComponent },
-  { path:'follow',  canActivate:[AuthGuard], component : FollowComponent },
+  { path:'follow',   component : FollowComponent },
   { path:'newProfil', component : NewProfilComponent },
   { path:'auth', component : AuthComponent },
 ];
