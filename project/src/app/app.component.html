@@ -2,9 +2,10 @@
 
     <mat-sidenav mode="over" [(opened)]= "opened">
         <mat-nav-list>
-            <a mat-list-item routerLink="profile" [ngClass]="{'disabled': !connected === true}" >Mon Profil </a>
-            <a mat-list-item routerLink="follow" [ngClass]="{'disabled': !connected === true}"> Mes démarches </a>
-            <a mat-list-item routerLink="meeting" [ngClass]="{'disabled': !connected === true}">Demande de rendez-vous</a>
+            <a mat-list-item routerLink="profile" [ngClass]="{'disabled': !connected === true}" ><span class="material-icons mr-2">perm_identity</span>Mon Profil </a>
+            <a mat-list-item routerLink="follow" [ngClass]="{'disabled': !connected === true}"><span class="material-icons mr-2">storage</span>  Mes démarches </a>
+            <a mat-list-item routerLink="meeting" [ngClass]="{'disabled': !connected === true}"><span class="material-icons mr-2">insert_invitation</span>Mes rendez-vous</a>
+            <a mat-list-item [ngClass]="{'disabled': !connected === true}" (click)="logOut()"> <span class="material-icons mr-2">cancel</span>  Déconnexion</a>
         </mat-nav-list>
     </mat-sidenav>
 
@@ -21,9 +22,10 @@
         <mat-toolbar color="primary" class="navbar_material maxi">
             <img  src="assets/logo-menu.png" alt="">
             <div *ngIf="connected">
-                <span class="link_menu maxi" routerLink="profile">Mon Profil</span>
-                <span class="link_menu maxi" routerLink="follow" >Mes démarches</span>
-                <span class="link_menu maxi" routerLink="meeting">Demande de Rendez-vous</span>
+                <span class="link_menu maxi" routerLink="profile"><span class="material-icons">perm_identity</span> Mon Profil</span>
+                <span class="link_menu maxi" routerLink="follow" ><span class="material-icons">storage</span> Mes démarches</span>
+                <span class="link_menu maxi" routerLink="meeting"><span class="material-icons">insert_invitation</span> Mes rendez-vous</span>
+                <span class="link_menu maxi" (click)="logOut()"><span class="material-icons logOut">cancel</span></span>
             </div>
             <div *ngIf="!connected">
                 <span class="link_menu" class='disabled' >Menu</span>

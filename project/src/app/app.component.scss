@@ -7,13 +7,27 @@
     text-decoration: none;
 }
 
+
+
 mat-toolbar.navbar_material.mini{
     visibility: hidden;
-   
 }
 mat-toolbar.navbar_material.maxi{
     visibility: visible;
     margin-top: -65px;
+
+    span:hover{
+        text-decoration: underline;
+    }
+
+    span.material-icons{
+        position: relative;
+        top:5px;
+        right: 2px;
+    }
+    span.material-icons.logOut:hover{
+        color:red
+    }
 }
 
 mat-sidenav-container{
@@ -28,7 +42,7 @@ mat-sidenav-container{
             cursor: pointer;
         } 
         .link_menu.maxi{
-            margin-right:15px;
+            margin-right:25px;
         }       
     }
     span.link_menu.maxi:focus{
@@ -37,6 +51,14 @@ mat-sidenav-container{
     mat-sidenav{
         width: 200px;
         padding: 10px;
+
+        mat-nav-list{
+            a{
+                width: 200px;
+                display: block;
+                margin-left: -10px;
+            }
+        }
 
         mat-icon{
             margin-right: 5px;
