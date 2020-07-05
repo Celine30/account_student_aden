@@ -1,3 +1,9 @@
+.container_return span.material-icons{
+    position: relative;
+    top:5px;
+    right: 2px;
+}
+
 .separator{
     max-width: 80px;
     margin:auto;
@@ -31,6 +37,15 @@
     max-width: 410px;
 }
 
+.container_return{
+    max-width: 840px;
+    margin:auto;
+    margin-bottom: 30px;
+    a{
+        color:#333;
+    }
+}
+
 .container_form_membership{
     background-color: white;
     max-width: 840px;
@@ -38,6 +53,7 @@
     padding: 20px;
     box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.2), 0 -6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 15px ;
+    margin-bottom: 40px;
 }
 
 @media screen and (max-width: 540px){

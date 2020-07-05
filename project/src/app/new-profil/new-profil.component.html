@@ -163,6 +163,10 @@
     
 </mat-vertical-stepper> -->
 
+<div class="container_return">
+    <a routerLink ="/auth" > <span class="material-icons">keyboard_backspace</span> Revenir à l'authentification </a>
+</div>
+
 <div class="container_title_form_membership text-center">
 <h2>Formulaire d'Adhésion au programme</h2>
 <div class="separator">
@@ -177,7 +181,7 @@
 <div class="container_form_membership">
     <div class="container_membership">
     <mat-vertical-stepper [linear]="isLinear" #stepper>
-        <mat-step [stepControl]="firstFormGroup" errorMessage="Il manque des informations.">
+        <mat-step [stepControl]="firstFormGroup">
             <ng-template matStepLabel>Vos Coordonnées </ng-template> 
                 <form [formGroup]="firstFormGroup">
                     <mat-form-field class='mr-5'>
@@ -193,7 +197,7 @@
                         <mat-label>Email</mat-label>
                         <input matInput placeholder="email" formControlName="email" required>
                         <mat-hint *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)&&f.email.hasError('pattern')" class=" text-left text-danger mess_error" role="alert">
-                            adresse mail non valide
+                            adresse mail invalide
                         </mat-hint>
                     </mat-form-field>
                     <br>
@@ -201,13 +205,13 @@
                         <mat-label>N°tel portable</mat-label>
                         <input matInput placeholder="n°tel portable" formControlName="phone1" [required]="f.phone2.value==''"> 
                         <mat-hint *ngIf="f.phone1.invalid && (f.phone1.dirty || f.phone1.touched)&&f.phone1.hasError('pattern')" class=" text-left text-danger mess_error" role="alert">
-                            N°portable non valide
+                            N°portable invalide
                         </mat-hint>
                     </mat-form-field>
                     <mat-form-field class='mr-5'>
                         <mat-label>N°tel fixe</mat-label>
                         <mat-hint *ngIf="f.phone2.invalid && (f.phone2.dirty || f.phone2.touched)&&f.phone2.hasError('pattern')" class=" text-left text-danger mess_error" role="alert">
-                            N°fixe non valide
+                            N°fixe invalide
                         </mat-hint>
                         <input matInput placeholder="n°tel fixe" formControlName="phone2" [required]="f.phone1.value==''">
                     </mat-form-field>
@@ -221,7 +225,7 @@
                         <mat-label>Code Postal</mat-label>
                         <input matInput placeholder="Code Postal" formControlName="postal" required>
                         <mat-hint *ngIf="f.postal.invalid && (f.postal.dirty || f.postal.touched)&&f.postal.hasError('pattern')" class=" text-left text-danger mess_error" role="alert">
-                            Code Postal non valide
+                            Code Postal invalide
                         </mat-hint>
                     </mat-form-field>
                     <mat-form-field class='mr-5'>
@@ -405,7 +409,7 @@
                         <mat-label>Numéro de Sécurité sociale</mat-label>
                         <input matInput (keyup)="shaping($event)" id="numberSecu"  formControlName="numberSecu"  required>
                         <mat-hint *ngIf="f2.numberSecu.hasError('pattern')" class=" text-left text-danger mess_error" role="alert">
-                            adresse mail non valide
+                            N°Sécu invalide
                         </mat-hint>
                     </mat-form-field>
                     <br>
@@ -423,7 +427,7 @@
                     </mat-form-field>
                     <br>
                     <mat-form-field class='mr-5'>
-                        <mat-label>Mobile</mat-label>
+                        <mat-label>Etes vous mobile?</mat-label>
                         <mat-select formControlName="mobile"required>
                             <mat-option value="oui" >Oui </mat-option> 
                             <mat-option value="non" >Non</mat-option> 
@@ -431,7 +435,7 @@
                     </mat-form-field>
                     <br>
                     <mat-form-field class='mr-5'>
-                        <mat-label >Reconnaissance handicapée</mat-label>
+                        <mat-label >Avez-vous la reconnaissance handicapée?</mat-label>
                         <mat-select formControlName="handicapped"required>
                             <mat-option value="oui" >Oui </mat-option> 
                             <mat-option value="non" >Non</mat-option> 
@@ -505,7 +509,7 @@
                 <div class='container_button_form d-flex justify-content-between'>
                     <button mat-raised-button color="primary" matStepperPrevious type="button"> <span class="material-icons">keyboard_arrow_left</span> Retour </button>
                     <button mat-stroked-button color="warn" (click)="stepper.reset()" type="button">Reset <span class="material-icons">clear</span></button>
-                    <button mat-raised-button color="primary" type="button" (click)="formGeneral()">Envoyer <span class="material-icons ml-2">send</span></button>
+                    <button mat-raised-button color="primary" type="button" [disabled]="firstFormGroup.invalid || secondFormGroup.invalid || threeFormGroup.invalid || forFormGroup.invalid " (click)="formGeneral()">Envoyer <span class="material-icons ml-2">send</span></button>
                 </div>
                 </form>
         </mat-step>

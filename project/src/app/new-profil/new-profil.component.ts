@@ -7,7 +7,9 @@ import { FormationUnit} from '../formationUnit';
 import { controlPass } from '../controlPass';
 import { ProfilUnit } from '../profilUnit'
 import { formatDate } from '@angular/common';
-
+import { retry } from 'rxjs/operators'
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-new-profil',
@@ -40,7 +42,8 @@ export class NewProfilComponent implements OnInit {
   regex = new RegExp("[0-9]{13}")
 
 
-  constructor(private _formBuilder: FormBuilder, private dateAdapter: DateAdapter<Date>, private httpClient : HttpClient) {
+  constructor(private _formBuilder: FormBuilder, private dateAdapter: DateAdapter<Date>, private httpClient : HttpClient, private router: Router, 
+    private authService: AuthService ) {
     this.dateAdapter.setLocale('fr'); 
   }
 
@@ -148,8 +151,6 @@ export class NewProfilComponent implements OnInit {
     const locale = 'en-fr';
     let formattedDate = formatDate(this.secondFormGroup.value.birthday, format, locale);
 
-    let password = 
-
     this.newProfil = new ProfilUnit(
       (this.firstFormGroup.value.name).toUpperCase(), 
       (this.firstFormGroup.value.firstname.charAt(0).toUpperCase() + this.firstFormGroup.value.firstname.substring(1).toLowerCase()),
@@ -184,6 +185,9 @@ export class NewProfilComponent implements OnInit {
   EditFormation()  {
     this.httpClient
     .get('http://localhost:8888/API-aden/index.php?action=back!edit_formation')
+    .pipe(
+      retry(3),
+    )
     .subscribe(
             (response) =>{
                 console.log(response);
@@ -199,12 +203,18 @@ export class NewProfilComponent implements OnInit {
     .post('http://localhost:8888/API-aden/index.php?action=back!newProfil', JSON.stringify($profil))
     .subscribe(
             (response) =>{
-              console.log(response)
+              console.log(response);
+              this.authService.isAuth=true;
+              this.authService.emitPostSubject ();
+              this.router.navigate(['follow']);
             },
             (error) => {
                 console.log(Object.values(error));
             })
+            
   }  
 
 }
+
+
 
