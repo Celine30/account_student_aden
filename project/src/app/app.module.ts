@@ -18,7 +18,8 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 
 import { HttpClientModule } from '@angular/common/http';
-import { NewProfilComponent } from './new-profil/new-profil.component'
+import { NewProfilComponent } from './new-profil/new-profil.component';
+import { NewContactComponent } from './new-contact/new-contact.component'
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NewProfilComponent } from './new-profil/new-profil.component'
     MeetingComponent,
     FooterBComponent,
     NewProfilComponent,
+    NewContactComponent,
  
   ],
   imports: [

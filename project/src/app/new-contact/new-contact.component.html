@@ -1,0 +1,56 @@
+<h1 class="mat-display-1">Nouvelle Entreprise contactée </h1>
+
+<div class="container">
+ 
+    <form [formGroup]="AddForm" (ngSubmit)="onSubmitForm()">
+
+    <h3>L'identité de l'entreprise</h3>
+
+    <mat-form-field  class="full-width">
+        <mat-label >Nom de l'Entreprise </mat-label>
+        <input matInput formControlName="name_entreprise" >
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field class="full-width">
+        <mat-label>Nom du contact</mat-label>
+        <input matInput formControlName="name_contact" >
+    </mat-form-field>
+
+    <br>
+
+    <div formArrayName = 'contact_tools' class="form-group mt-5">
+        <h3>Les Outils de contact</h3>
+        <div class="form-group d-flex" *ngFor="let toolsControl of getTools().controls; let i = index">
+            <input type="text" class="form-control" [formControlName]="i"><span class="material-icons ml-2 mt-2" (click)="cancel(i)">cancel</span> 
+        </div>
+        <button type="button" class="btn btn-dark" (click)="onAddHobby()" >Ajouter une coordonnées</button>
+    </div>
+
+    <div formArrayName = 'contacts' class="form-group mt-5">
+        <h3>Les contacts</h3>
+        <div class="form-group" *ngFor="let contactControl of getContacts().controls; let i = index">
+            <ng-container [formGroupName]="i">
+                <input type="text" class="form-control" formControlName="toolsUnit">
+                <mat-form-field  color = "primary" class="">
+                    <mat-label>Date du contact </mat-label>
+                    <input matInput  [matDatepicker]="picker" formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+              </ng-container> <span class="material-icons ml-2 mt-2" (click)="cancelContacts(i)">cancel</span>   
+            
+        </div>
+        <button type="button" class="btn btn-dark" (click)="onAddContacts()" >Ajouter une coordonnées</button>
+    </div>
+
+    <br>
+
+    <div class='btn_send_order'>
+        <button mat-raised-button color="primary" type=submit class="mb-5" [disabled]="AddForm.invalid">Envoyer les informations</button> 
+    </div>
+</form>
+
+
+</div>
