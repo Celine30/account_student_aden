@@ -3,11 +3,11 @@
 
 <div class="container">
 
-    <button mat-stroked-button class="mb-5" color="primary" routerLink="/newContact">{{inscription_button_add}}</button>
+    <button mat-stroked-button class="mb-5" color="primary" routerLink="/newContact">Ajouter un suivi d'entreprise</button>
     
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-        <ng-container matColumnDef="select">
+        <!-- <ng-container matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef>
                 <mat-checkbox (change)="$event ? masterToggle() : null"
                             [checked]="selection.hasValue() && isAllSelected()"
@@ -23,43 +23,44 @@
                 </mat-checkbox>
             </td>
         </ng-container>
+    -->
 
         <ng-container matColumnDef="position">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > N°. </th>
             <td mat-cell *matCellDef="let element"> {{element.position}} </td>
         </ng-container>
 
         <ng-container matColumnDef="entreprise">
-            <th mat-header-cell *matHeaderCellDef> Entreprise </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Entreprise </th>
             <td mat-cell *matCellDef="let element"> {{element.entreprise}} </td>
         </ng-container>
 
         <ng-container matColumnDef="contact">
-            <th mat-header-cell *matHeaderCellDef> Nom du Contact </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom du Contact </th>
             <td mat-cell *matCellDef="let element"> {{element.contact}} </td>
         </ng-container>
 
         <ng-container matColumnDef="outils">
-            <th mat-header-cell *matHeaderCellDef> Contacts </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Contacts </th>
             <td mat-cell *matCellDef="let element"> {{element.outils}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="relaunch">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Dernière relance </th>
+            <td mat-cell *matCellDef="let element"> {{element.relaunch| date:'d/MM/yyyy'}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="response">
-            <th mat-header-cell *matHeaderCellDef> Reponse </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Reponse </th>
             <td mat-cell *matCellDef="let element"> {{element.response}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="relaunch">
-            <th mat-header-cell *matHeaderCellDef> Dernière relance </th>
-            <td mat-cell *matCellDef="let element"> {{element.relaunch}} </td>
-        </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-            (click)="selection.toggle(row)">
-        </tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         
     </table>
 
 </div>
+
+
 
