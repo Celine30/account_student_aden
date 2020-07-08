@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
+import { IdentificationService } from '../services/identification.service'
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +18,10 @@ export class AuthComponent implements OnInit {
   error = false;
   authstatus: boolean;
 
-  constructor( private router: Router , private authService: AuthService, private formBuilder : FormBuilder) { }
+  constructor( private router: Router ,
+    private authService: AuthService,
+    private formBuilder : FormBuilder,
+    private identificationService : IdentificationService) { }
 
   initForm(){
     this.AuthForm = this.formBuilder.group({
@@ -27,6 +31,7 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.initForm();
     this.authstatusSubcription = this.authService.authSubject.subscribe(
       (response) => {
@@ -35,6 +40,7 @@ export class AuthComponent implements OnInit {
         this.error = !response;
         if(response){
           this.router.navigate(['profile']);
+          this.identificationService.openSession(this.AuthForm.value.identifiant)
         }
       }
     );
@@ -42,8 +48,9 @@ export class AuthComponent implements OnInit {
 
   onsignIn(){
     const formValue = this.AuthForm.value;
-    this.authService.signIn(formValue)
+    this.authService.signIn(formValue);
     }
+   
     
 
 }
