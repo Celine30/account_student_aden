@@ -16,6 +16,9 @@ import { FooterBComponent } from './footer-b/footer-b.component';
 
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
+import { IdentificationService } from './services/identification.service';
+import { FormationService } from './services/formation.service';
+
 
 import { HttpClientModule } from '@angular/common/http';
 import { NewProfilComponent } from './new-profil/new-profil.component';
@@ -45,7 +48,8 @@ import { NewContactComponent } from './new-contact/new-contact.component'
   providers: [
     AuthGuard,
     AuthService,
-    
+    IdentificationService,
+    FormationService
   ],
   bootstrap: [AppComponent]
 })
