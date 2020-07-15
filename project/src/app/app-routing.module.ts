@@ -8,6 +8,8 @@ import { MeetingComponent } from './meeting/meeting.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { NewProfilComponent } from './new-profil/new-profil.component'
 import { NewContactComponent } from './new-contact/new-contact.component'
+import { UnitFollowComponent } from './unit-follow/unit-follow.component'
+
 
 const routes: Routes = [
   { path:'', component : AuthComponent },
@@ -17,6 +19,7 @@ const routes: Routes = [
   { path:'newProfil', component : NewProfilComponent },
   { path:'newContact', component : NewContactComponent },
   { path:'auth', component : AuthComponent },
+  { path:'unitFollow/:id', component : UnitFollowComponent },
 ];
 
 @NgModule({

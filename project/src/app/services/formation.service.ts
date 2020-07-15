@@ -6,17 +6,11 @@ import { Subject } from 'rxjs';
 
 export class FormationService{
 
-    
-
     constructor( private httpClient : HttpClient ) {}
 
-    public formationsSuivies = [
-        {position: 5, entreprise: 'Adista', contact: 'Mr Bertrand', outils:"Mail/LinkedIn", response:'en attente', relaunch: new Date('December 17, 1995 03:24:00')},
-        {position: 4, entreprise: 'Hager Group', contact: 'Mr Fillon', outils:"Tel", response:'non', relaunch: new Date('10/08/2020')},
-        {position: 3, entreprise: 'Carrefour', contact: 'Mme Tatenpion', outils:"Site/Linkedin", response:'en attente', relaunch: new Date('10/08/2020')},
-        {position: 2, entreprise: 'Cora', contact: 'Vincent', outils:"mail/tel", response:'oui', relaunch: new Date('10/08/2020')},
-        {position: 1, entreprise: 'SO Chic', contact: 'PaRis', outils:"Site", response:'en attente', relaunch: new Date('10/08/2020')},
-    ]
+    private formationsSuivies = []
+
+    public informations:Object
 
     formationsSuiviesSubject = new Subject<any>();
 
@@ -25,9 +19,31 @@ export class FormationService{
     }
 
     getFormationsSuiviesToServer($ID_connected){
-        console.log($ID_connected)
+        this.formationsSuivies=[]
         this.httpClient
             .post<any[]>('http://localhost:8888/API-aden/index.php?action=back!edit_suivis', JSON.stringify($ID_connected))
+            .subscribe(
+                (responses) =>{
+                    responses.forEach(
+                        element =>this.formationsSuivies.push(
+                            {position: element.position, entreprise: element.entreprise, contact: element.name_contact, outils : element.contact, response:element.response, relaunch : element.relauchdate, ID_entreprise : element.ID }
+                        )
+                    )
+                    this.formationsSuivies=this.formationsSuivies.reverse();
+                    this.emitFormationsSuiviesSubject()
+                },
+                (error) => {
+                    console.log('Erreur de chargement' + error);
+                }
+            )
+    }
+
+    getAllContact($ID_connected,$ID_entreprise){
+        this.informations = { ID_connected : $ID_connected};
+        this.informations['ID_entreprise']=$ID_entreprise;
+        console.log(this.informations) 
+        this.httpClient
+            .post<any[]>('http://localhost:8888/API-aden/index.php?action=back!edit_contactEntreprise', JSON.stringify(this.informations))
             .subscribe(
                 (response) =>{
                     console.log(response)

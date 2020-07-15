@@ -18,11 +18,12 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { IdentificationService } from './services/identification.service';
 import { FormationService } from './services/formation.service';
-
+import { ProfileService } from './services/profile.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { NewProfilComponent } from './new-profil/new-profil.component';
-import { NewContactComponent } from './new-contact/new-contact.component'
+import { NewContactComponent } from './new-contact/new-contact.component';
+import { UnitFollowComponent } from './unit-follow/unit-follow.component'
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { NewContactComponent } from './new-contact/new-contact.component'
     FooterBComponent,
     NewProfilComponent,
     NewContactComponent,
+    UnitFollowComponent,
  
   ],
   imports: [
@@ -49,7 +51,8 @@ import { NewContactComponent } from './new-contact/new-contact.component'
     AuthGuard,
     AuthService,
     IdentificationService,
-    FormationService
+    FormationService,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })
