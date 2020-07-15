@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormationService } from  '../services/formation.service'
+import { Router } from '@angular/router';
 
 
 export interface PeriodicElement {
@@ -30,21 +31,28 @@ export class FollowComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'entreprise', 'contact', 'outils', 'relaunch','response'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
+  selection = new SelectionModel<PeriodicElement>(true, []);
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor( private FormationService : FormationService) {}
+  constructor( private FormationService : FormationService, private router :Router) {}
+
+
+  directionUnit(x){
+    console.log(x.ID_entreprise);
+    console.log(sessionStorage.getItem('ID_connected'));
+    this.router.navigate(['/unitFollow/'+ x.ID_entreprise])
+  }
 
   ngOnInit(): void {
+    this.dataSource.sort = this.sort;
     this.FormationService.getFormationsSuiviesToServer(sessionStorage.getItem('ID_connected'));
     this.formationsSuiviesSubscription = this.FormationService.formationsSuiviesSubject.subscribe(
       (response) => {
         this.dataSource.data = response;
-        console.log(response)
       });
     this.FormationService.emitFormationsSuiviesSubject();
-    this.dataSource.sort = this.sort;
+    
 }
 
 }
