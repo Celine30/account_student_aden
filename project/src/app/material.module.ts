@@ -18,6 +18,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSortModule } from '@angular/material/sort';
+
+import { MatSliderModule } from '@angular/material/slider';
+
 
 
 @NgModule({
@@ -35,7 +39,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatDatepickerModule,
         MatNativeDateModule,
         MatTableModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatSortModule,
+        MatSliderModule 
     ]
 })
 
