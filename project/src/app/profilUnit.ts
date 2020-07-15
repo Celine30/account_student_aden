@@ -23,7 +23,8 @@ export class ProfilUnit {
             public handicapped: string,
             public training: string,
             public funding: string,
-            public password: string,
-            public confirmPassword: string,){}
+            public password: string, 
+            public CV :string, 
+            public motivations :string){}
          
     }

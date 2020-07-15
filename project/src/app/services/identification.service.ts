@@ -15,12 +15,14 @@ export class IdentificationService{
                 .subscribe(
                     (response) =>{
                         sessionStorage.setItem('ID_connected', response[0].ID);
-                    // console.log(sessionStorage.getItem('ID_connected'));
-                },
-                (error) => {
-                    // console.log('Erreur de chargement' + error);
-                    console.log(Object.values(error));
-                })
-    }
+                        sessionStorage.setItem('email_connected', $email);
+                        console.log(sessionStorage.getItem('ID_connected'));
+                        console.log(sessionStorage.getItem('email_connected'));
+                    },
+                    (error) => {
+                        console.log('Erreur de chargement' + error);
+                        console.log(Object.values(error));
+                    })
+        }
 
 }

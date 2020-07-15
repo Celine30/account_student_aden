@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators, ValidatorFn} from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators, ValidatorFn} from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { HttpClientModule, HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http'
@@ -174,8 +174,9 @@ export class NewProfilComponent implements OnInit {
       this.secondFormGroup.value.handicapped,
       this.threeFormGroup.value.training,
       this.threeFormGroup.value.funding,
-      this.forFormGroup.value.password,
-      this.forFormGroup.value.confirmPassword
+      this.forFormGroup.value.password, 
+      null, 
+      null
     )
     console.log (this.newProfil);
     

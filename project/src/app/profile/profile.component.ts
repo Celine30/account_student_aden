@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from  '../services/profile.service'
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+
+  profileConnected
+  
+  profileZoomSubscription : Subscription;
+
+  constructor(private ProfileService : ProfileService) { }
 
   ngOnInit(): void {
-  }
+    this.ProfileService.getProfileUnitToServer(sessionStorage.getItem('email_connected'));
+    this.profileZoomSubscription = this.ProfileService.ProfileZoomSubject.subscribe(
+      (response) => {
+          console.log(response);
+          this.profileConnected=response
+      });
+    this.ProfileService.emitProfileZoomSubject()  ;
+    }
 
 }
