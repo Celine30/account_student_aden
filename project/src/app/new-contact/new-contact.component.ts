@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder , Validators, FormArray,} from '@angular/forms';
 import { HttpClientModule, HttpClient, HttpResponse } from '@angular/common/http'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-contact',
@@ -14,7 +15,7 @@ export class NewContactComponent implements OnInit {
   addContact=false
   NewEntreprise:object;
 
-  constructor( private formBuilder : FormBuilder,  private httpClient : HttpClient ) { 
+  constructor( private formBuilder : FormBuilder,  private httpClient : HttpClient , private router : Router) { 
   }
 
   initForm(){
@@ -60,6 +61,7 @@ export class NewContactComponent implements OnInit {
     .subscribe(
             (response) =>{
               console.log(response);
+              this.router.navigate(['/follow'])
             },
             (error) => {
                 console.log(Object.values(error));
