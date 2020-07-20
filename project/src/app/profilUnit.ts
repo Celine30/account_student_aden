@@ -16,15 +16,19 @@ export class ProfilUnit {
             public countryBirthday: string,
             public nationality: string,
             public statut: string,
+            public statutAutre: string,
             public numberSecu: string,
+            public haslicence: string,
             public licence: string,
             public vehicule: string,
             public mobile: string,
+            public mobilityParameter: string,
             public handicapped: string,
             public training: string,
             public funding: string,
             public password: string, 
             public CV :string, 
-            public motivations :string){}
+            public photo :string, 
+            public advice :string){}
          
     }

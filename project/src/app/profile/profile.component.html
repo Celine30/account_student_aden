@@ -1,1 +1,68 @@
-<p *ngIf="profileConnected">{{profileConnected.name}}</p>
+<div class="container" *ngIf="profileConnected">
+    
+    <div class='title d-flex align-items-center justify-content-center'>
+        <p>{{profileConnected.name}} {{profileConnected.firstName}}</p>
+        <p *ngIf="profileConnected.advice !=null;then advice else Noadvice"></p>
+                <ng-template #advice> Nom du type</ng-template>
+                <ng-template #Noadvice>En  attente d'attachement de conseiller</ng-template>
+    </div>
+
+
+    <div class="row" >
+
+        <div class='resume mt-5 border col-8 '>
+            <h2>Mon Projet : </h2> 
+            <p>Formations {{profileConnected.training}} en {{profileConnected.funding}}  </p>
+
+            <h2>A propos de moi</h2>
+            <p>Je suis né(e) le {{profileConnected.birthday}} à {{profileConnected.cityBirthday}} en {{profileConnected.countryBirthday}}</p>  
+            <p>De nationality {{profileConnected.nationality}}</p>
+            <p>J'habite le {{profileConnected.address}} au {{profileConnected.postal}} {{profileConnected.city}} ( {{profileConnected.region}} ) </p>
+            <p *ngIf="profileConnected.haslicence =='oui';then haslicence else Nohaslicence"></p>
+                <ng-template #haslicence>
+                    J'ai le permis de conduire, 
+                    <p *ngIf="profileConnected.vehicule =='oui';then vehicule else Novehicule"></p>
+                        <ng-template #vehicule>et un véhicule.
+                            <p *ngIf="profileConnected.mobile =='oui';then mobile else Nomobile"></p>
+                                <ng-template #mobile>Je suis mobile jusqu'à km </ng-template>
+                                <ng-template #Nomobile> mais je ne suis pas mobile </ng-template>
+                        </ng-template>
+                        <ng-template #Novehicule> mais je n'ai pas de véhicule.
+                            <p *ngIf="profileConnected.mobile =='oui';then mobile else Nomobile"></p>
+                            <ng-template #mobile>Cependant je suis mobile jusqu'à {{profileConnected.mobilityParameter}} km </ng-template>
+                            <ng-template #Nomobile> Je ne suis pas donc pas mobile </ng-template>
+                        </ng-template>
+                </ng-template>
+                <ng-template #Nohaslicence>Je n'ai pas le permis  
+                    <p *ngIf="profileConnected.mobile =='oui';then mobile else Nomobile"></p>
+                            <p #mobile>Cependant je suis mobile jusqu'à {{profileConnected.mobilityParameter}}km </p>
+                            <ng-template #Nomobile> Je ne suis pas donc pas mobile </ng-template>
+                </ng-template>
+            
+            <p *ngIf="profileConnected.statut !='autre';then statut else Nostatut"></p>
+                <ng-template #statut>Aujourd"hui, je suis {{profileConnected.statut}}</ng-template>
+                <ng-template #Nostatut>Aujourd"hui, je suis {{profileConnected.statutAutre}}</ng-template>
+            <p *ngIf="profileConnected.handicapped=='oui'" >Je suis reconnu(e) handicappé(e) </p>
+
+            <h2>Mes informations personnelles</h2>
+            <p>Mon email : {{profileConnected.email}} </p>
+            <p *ngIf="profileConnected.phone1!=null" >Mon numéro de téléphone portable : {{profileConnected.phone1}} </p>
+            <p *ngIf="profileConnected.phone2!=null" >Mon numéro de téléphone fixe : {{profileConnected.phone2}} </p>
+        </div>
+
+        <div class='widgetRight mt-5 border col-4'>
+            <div class='col-12 border photo'>
+                <p *ngIf="profileConnected.motivations !=null;then photo else Nophoto"></p>
+                <ng-template #photo></ng-template>
+                <ng-template #Nophoto>Merci de télécharger une photo</ng-template>
+            </div>
+
+            <div class='col-12 border cv'>
+                <p *ngIf="profileConnected.cv !=null;then cv else Nocv"></p>
+                <ng-template #cv></ng-template>
+                <ng-template #Nocv>Merci de télécharger votre CV</ng-template>
+            </div>
+        </div>
+
+    </div> 
+</div>

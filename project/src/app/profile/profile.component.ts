@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class ProfileComponent implements OnInit {
 
+  breakpoint: number;
 
   profileConnected
   
@@ -18,6 +19,7 @@ export class ProfileComponent implements OnInit {
   constructor(private ProfileService : ProfileService) { }
 
   ngOnInit(): void {
+ 
     this.ProfileService.getProfileUnitToServer(sessionStorage.getItem('email_connected'));
     this.profileZoomSubscription = this.ProfileService.ProfileZoomSubject.subscribe(
       (response) => {
@@ -27,4 +29,5 @@ export class ProfileComponent implements OnInit {
     this.ProfileService.emitProfileZoomSubject()  ;
     }
 
+ 
 }

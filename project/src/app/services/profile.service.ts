@@ -40,16 +40,20 @@ export class ProfileService{
                         response[0].countryBirthday,
                         response[0].nationality,
                         response[0].statut,
+                        response[0].statutAutre,
                         response[0].numberSecu,
+                        response[0].haslicence,
                         response[0].licence,
                         response[0].vehicule,
                         response[0].mobile,
+                        response[0].mobilityParameter,
                         response[0].handicapped,
                         response[0].training,
                         response[0].funding,
                         response[0].password,
                         response[0].cv, 
-                        response[0].motivations)
+                        response[0].photo,
+                        response[0].advice)
                     console.log(this.ProfileZoom)
                     this.emitProfileZoomSubject();
                 },
