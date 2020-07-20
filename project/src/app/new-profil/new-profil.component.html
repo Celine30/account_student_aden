@@ -181,6 +181,7 @@
 <div class="container_form_membership">
     <div class="container_membership">
     <mat-vertical-stepper [linear]="isLinear" #stepper>
+
         <mat-step [stepControl]="firstFormGroup">
             <ng-template matStepLabel>Vos Coordonnées </ng-template> 
                 <form [formGroup]="firstFormGroup">
@@ -371,13 +372,12 @@
         <mat-step [stepControl]="secondFormGroup">
             <ng-template matStepLabel>Vos Informations </ng-template>
                 <form [formGroup]="secondFormGroup">
-                    <mat-form-field class='mr-5'>
+                    <mat-form-field class='mr-5 imputDate'>
                         <mat-label>Date de naissance</mat-label>
                         <input matInput [matDatepicker]="picker"  formControlName="birthday">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
                     </mat-form-field>
-
                     <mat-form-field class='mr-5'>
                         <mat-label>à</mat-label>
                         <input matInput formControlName="citybirthday" placeholder="Verdun"
@@ -397,12 +397,16 @@
                     <br>
                     <mat-form-field class='mr-5'>
                         <mat-label>Statut</mat-label>
-                        <mat-select formControlName="statut"required>
+                        <mat-select formControlName="statut" (ngModelChange)="selectstatut($event)" >
                             <mat-option value="actif" >En activité professionnelle </mat-option> 
                             <mat-option value="etudiant" >Etudiant(e)</mat-option> 
                             <mat-option value="chomage" > Demandeur(se) d'emploi</mat-option> 
                             <mat-option value="autre" > Autre</mat-option> 
                         </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class='mr-5'[style.display]="statutAutre?'inline-block':'none'">
+                        <mat-label>Merci de préciser </mat-label>
+                        <input matInput formControlName="statutAutre" placeholder="Retraité" [required]="statutAutre">
                     </mat-form-field>
                     <br>
                     <mat-form-field class='mr-5'>
@@ -414,25 +418,40 @@
                     </mat-form-field>
                     <br>
                     <mat-form-field class='mr-5'>
-                        <mat-label>Numéro de Permis de conduire</mat-label>
-                        <input matInput formControlName="licence" placeholder="PC343535643533"
-                                required>
-                    </mat-form-field>
-                    <mat-form-field class='mr-5'>
-                        <mat-label >Véhicule</mat-label>
-                        <mat-select formControlName="vehicule"required>
+                        <mat-label >Avez vous le permis ? </mat-label>
+                        <mat-select formControlName="haslicence" (ngModelChange)="selectlicence($event)" >
                             <mat-option value="oui" >Oui </mat-option> 
                             <mat-option value="non" >Non</mat-option> 
                         </mat-select>
                     </mat-form-field>
-                    <br>
+
+                    <div [style.display]="haslicence?'block':'none'">
+                        <mat-form-field class='mr-5'>
+                            <mat-label>Numéro de Permis de conduire</mat-label>
+                            <input matInput formControlName="licence" placeholder="PC343535643533"
+                            [required]="haslicence">
+                        </mat-form-field>
+                        <mat-form-field> 
+                            <mat-label >Véhicule</mat-label>
+                            <mat-select formControlName="vehicule"[required]="haslicence">
+                                <mat-option value="oui" >Oui </mat-option> 
+                                <mat-option value="non" >Non</mat-option> 
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
                     <mat-form-field class='mr-5'>
                         <mat-label>Etes vous mobile?</mat-label>
-                        <mat-select formControlName="mobile"required>
+                        <mat-select formControlName="mobile"required (ngModelChange)="selectmobility($event)" >
                             <mat-option value="oui" >Oui </mat-option> 
                             <mat-option value="non" >Non</mat-option> 
                         </mat-select>
                     </mat-form-field>
+                    <mat-form-field class="imputmobilityParameter" [style.display]="mobilityParameter?'block':'none'">
+                        <mat-label> Périmetre de mobilité</mat-label>
+                        <input matInput formControlName="mobilityParameter" placeholder="10"
+                        [required]="f2.mobile.value=='oui'">
+                    </mat-form-field> <i class="kilometre" *ngIf="mobilityParameter"> KM </i>
                     <br>
                     <mat-form-field class='mr-5'>
                         <mat-label >Avez-vous la reconnaissance handicapée?</mat-label>

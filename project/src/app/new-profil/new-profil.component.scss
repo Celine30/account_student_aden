@@ -34,7 +34,7 @@
 }
 
 .container_button_form{
-    max-width: 410px;
+    max-width: 670px;
 }
 
 .container_return{
@@ -56,9 +56,17 @@
     margin-bottom: 5px;
 }
 
-@media screen and (max-width: 540px){
+mat-form-field{
+    width: 310px!important;
+}
+
+mat-form-field.imputmobilityParameter{
+    width: 250px!important;
+}
+
+@media screen and (max-width: 840px){
     .container_button_form{
-    max-width: 180px;
+    width: 310px;
     }
 }
 

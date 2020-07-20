@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators, ValidatorFn} from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
@@ -36,11 +36,13 @@ export class NewProfilComponent implements OnInit {
   formationSelection:object;
 
   newProfil: object;
-  
   startDate = new Date(1990, 0, 1);
   
-  regex = new RegExp("[0-9]{13}")
+  regex = new RegExp("[0-9]{13}");
 
+  mobilityParameter = false
+  haslicence = false
+  statutAutre = false
 
   constructor(private _formBuilder: FormBuilder, private dateAdapter: DateAdapter<Date>, private httpClient : HttpClient, private router: Router, 
     private authService: AuthService ) {
@@ -67,10 +69,13 @@ export class NewProfilComponent implements OnInit {
       countrybirthday: ['', Validators.required],
       nationality: ['', Validators.required],
       statut: ['', Validators.required],
+      statutAutre: [''],
       numberSecu: ['', [Validators.required,Validators.minLength(18),Validators.maxLength(18),Validators.pattern('^[ 0-9]*$')]],
-      licence: ['', Validators.required],
-      vehicule: ['', Validators.required],
+      haslicence: ['', Validators.required],
+      licence: [''],
+      vehicule: [''],
       mobile: ['', Validators.required],
+      mobilityParameter :['', Validators.pattern('[0-9]{1,}')],
       handicapped: ['', Validators.required]
     });
     this.threeFormGroup = this._formBuilder.group({
@@ -133,30 +138,49 @@ export class NewProfilComponent implements OnInit {
     }
   }
 
-  // form1(){
-  //   console.log(this.firstFormGroup.value);
-  // }
-  // form2(){
-  //   console.log(this.secondFormGroup.value);
-  // }
-  // form3(){
-  //   console.log(this.threeFormGroup.value);
-  // }
-  // form4(){
-  //   console.log(this.forFormGroup.value);
-  // }
+  selectstatut(val){
+    if (val == 'autre'){
+      this.statutAutre = true
+    }else{
+      this.statutAutre = false
+      console.log(this.haslicence)
+      this.secondFormGroup.get('statutAutre').setValue("")
+    }
+  }
+
+  selectmobility(val){
+    if (val == 'oui'){
+      this.mobilityParameter=true
+      console.log(this.mobilityParameter)
+    }else{
+      this.mobilityParameter=false
+      console.log(this.mobilityParameter)
+      this.secondFormGroup.get('mobilityParameter').setValue("")
+    }
+  }
+
+  selectlicence(val){
+    if (val == 'oui'){
+      this.haslicence=true
+      console.log(this.haslicence)
+    }else{
+      this.haslicence=false
+      console.log(this.haslicence)
+      this.secondFormGroup.get('licence').setValue("")
+      this.secondFormGroup.get('vehicule').setValue("")
+    }
+  }
 
   formGeneral(){
     const format = 'yyyy-MM-dd';
     const locale = 'en-fr';
     let formattedDate = formatDate(this.secondFormGroup.value.birthday, format, locale);
-
     this.newProfil = new ProfilUnit(
       (this.firstFormGroup.value.name).toUpperCase(), 
       (this.firstFormGroup.value.firstname.charAt(0).toUpperCase() + this.firstFormGroup.value.firstname.substring(1).toLowerCase()),
       this.firstFormGroup.value.email,
-      this.firstFormGroup.value.phone1,
-      this.firstFormGroup.value.phone2,
+      this.firstFormGroup.value.phone1 ? this.firstFormGroup.value.phone1 :null,
+      this.firstFormGroup.value.phone2 ? this.firstFormGroup.value.phone2 :null,
       this.firstFormGroup.value.address,
       this.firstFormGroup.value.postal,
       (this.firstFormGroup.value.city.charAt(0).toUpperCase() + this.firstFormGroup.value.city.substring(1).toLowerCase()),
@@ -167,15 +191,19 @@ export class NewProfilComponent implements OnInit {
       this.secondFormGroup.value.countrybirthday.toUpperCase(),
       (this.secondFormGroup.value.nationality.charAt(0).toUpperCase() + this.secondFormGroup.value.nationality.substring(1).toLowerCase()),
       this.secondFormGroup.value.statut,
+      this.secondFormGroup.value.statutAutre,
       this.secondFormGroup.value.numberSecu,
-      this.secondFormGroup.value.licence,
-      this.secondFormGroup.value.vehicule,
+      this.secondFormGroup.value.haslicence,
+      this.secondFormGroup.value.licence ? this.secondFormGroup.value.licence :null,
+      this.secondFormGroup.value.vehicule ? this.secondFormGroup.value.vehicule:null,
       this.secondFormGroup.value.mobile,
+      this.secondFormGroup.value.mobilityParameter ? this.secondFormGroup.value.mobilityParameter:null,
       this.secondFormGroup.value.handicapped,
       this.threeFormGroup.value.training,
       this.threeFormGroup.value.funding,
       this.forFormGroup.value.password, 
       null, 
+      null,
       null
     )
     console.log (this.newProfil);
@@ -200,6 +228,7 @@ export class NewProfilComponent implements OnInit {
   }  
 
   AddProfil($profil) {
+    console.log($profil)
     this.httpClient
     .post('http://localhost:8888/API-aden/index.php?action=back!newProfil', JSON.stringify($profil))
     .subscribe(
