@@ -35,12 +35,11 @@ export class AuthComponent implements OnInit {
     this.initForm();
     this.authstatusSubcription = this.authService.authSubject.subscribe(
       (response) => {
-        console.log(response + ' dans la subcription')
         this.authstatus = response;
         this.error = !response;
         if(response){
+          this.identificationService.openSession(this.AuthForm.value.identifiant);
           this.router.navigate(['profile']);
-          this.identificationService.openSession(this.AuthForm.value.identifiant)
         }
       }
     );
@@ -50,7 +49,6 @@ export class AuthComponent implements OnInit {
     const formValue = this.AuthForm.value;
     this.authService.signIn(formValue);
     }
-   
     
 
 }

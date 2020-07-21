@@ -10,6 +10,8 @@ import { formatDate } from '@angular/common';
 import { retry } from 'rxjs/operators'
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { IdentificationService } from '../services/identification.service'
+
 
 @Component({
   selector: 'app-new-profil',
@@ -44,8 +46,12 @@ export class NewProfilComponent implements OnInit {
   haslicence = false
   statutAutre = false
 
-  constructor(private _formBuilder: FormBuilder, private dateAdapter: DateAdapter<Date>, private httpClient : HttpClient, private router: Router, 
-    private authService: AuthService ) {
+  constructor(private _formBuilder: FormBuilder,
+    private dateAdapter: DateAdapter<Date>,
+    private httpClient : HttpClient,
+    private router: Router, 
+    private authService: AuthService,
+    private identificationService : IdentificationService ) {
     this.dateAdapter.setLocale('fr'); 
   }
 
@@ -236,6 +242,8 @@ export class NewProfilComponent implements OnInit {
               console.log(response);
               this.authService.isAuth=true;
               this.authService.emitPostSubject ();
+              console.log($profil.email)
+              this.identificationService.openSession($profil.email);
               this.router.navigate(['follow']);
             },
             (error) => {

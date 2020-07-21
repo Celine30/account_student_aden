@@ -13,13 +13,13 @@ import { UnitFollowComponent } from './unit-follow/unit-follow.component'
 
 const routes: Routes = [
   { path:'', component : AuthComponent },
-  { path:'profile', canActivate:[AuthGuard], component : ProfileComponent },
-  { path:'meeting',  canActivate:[AuthGuard], component : MeetingComponent },
-  { path:'follow',   component : FollowComponent },
+  { path:'profile', component : ProfileComponent },
+  { path:'meeting', canActivate:[AuthGuard], component : MeetingComponent },
+  { path:'follow', canActivate:[AuthGuard],  component : FollowComponent },
   { path:'newProfil', component : NewProfilComponent },
-  { path:'newContact', component : NewContactComponent },
+  { path:'newContact',  canActivate:[AuthGuard], component : NewContactComponent },
   { path:'auth', component : AuthComponent },
-  { path:'unitFollow/:id', component : UnitFollowComponent },
+  { path:'unitFollow/:id',  canActivate:[AuthGuard], component : UnitFollowComponent },
 ];
 
 @NgModule({
