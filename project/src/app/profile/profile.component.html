@@ -1,6 +1,6 @@
 <div class="container" *ngIf="profileConnected">
     
-    <div class='title d-flex align-items-center justify-content-center'>
+    <div class='title d-flex align-items-center justify-content-around'>
         <p>{{profileConnected.name}} {{profileConnected.firstName}}</p>
         <p *ngIf="profileConnected.advice !=null;then advice else Noadvice"></p>
                 <ng-template #advice> Nom du type</ng-template>
@@ -15,9 +15,9 @@
             <p>Formations {{profileConnected.training}} en {{profileConnected.funding}}  </p>
 
             <h2>A propos de moi</h2>
-            <p>Je suis né(e) le {{profileConnected.birthday}} à {{profileConnected.cityBirthday}} en {{profileConnected.countryBirthday}}</p>  
-            <p>De nationality {{profileConnected.nationality}}</p>
-            <p>J'habite le {{profileConnected.address}} au {{profileConnected.postal}} {{profileConnected.city}} ( {{profileConnected.region}} ) </p>
+            <p>Je suis né(e) le {{profileConnected.birthday}} à {{profileConnected.cityBirthday}} en {{profileConnected.countryBirthday}} 
+            <br>De nationalité {{profileConnected.nationality}}</p>
+            <p>J'habite {{profileConnected.address}} - {{profileConnected.postal}} {{profileConnected.city}} ( {{profileConnected.region}} ) </p>
             <p *ngIf="profileConnected.haslicence =='oui';then haslicence else Nohaslicence"></p>
                 <ng-template #haslicence>
                     J'ai le permis de conduire, 
@@ -30,21 +30,23 @@
                         <ng-template #Novehicule> mais je n'ai pas de véhicule.
                             <p *ngIf="profileConnected.mobile =='oui';then mobile else Nomobile"></p>
                             <ng-template #mobile>Cependant je suis mobile jusqu'à {{profileConnected.mobilityParameter}} km </ng-template>
-                            <ng-template #Nomobile> Je ne suis pas donc pas mobile </ng-template>
+                            <ng-template #Nomobile> Ainsi, je ne suis pas mobile. </ng-template>
                         </ng-template>
                 </ng-template>
                 <ng-template #Nohaslicence>Je n'ai pas le permis  
                     <p *ngIf="profileConnected.mobile =='oui';then mobile else Nomobile"></p>
-                            <p #mobile>Cependant je suis mobile jusqu'à {{profileConnected.mobilityParameter}}km </p>
+                            <ng-template #mobile>Cependant je suis mobile jusqu'à {{profileConnected.mobilityParameter}}km </ng-template>
                             <ng-template #Nomobile> Je ne suis pas donc pas mobile </ng-template>
                 </ng-template>
-            
+            <br>    
+            <br>
             <p *ngIf="profileConnected.statut !='autre';then statut else Nostatut"></p>
                 <ng-template #statut>Aujourd"hui, je suis {{profileConnected.statut}}</ng-template>
                 <ng-template #Nostatut>Aujourd"hui, je suis {{profileConnected.statutAutre}}</ng-template>
+
             <p *ngIf="profileConnected.handicapped=='oui'" >Je suis reconnu(e) handicappé(e) </p>
 
-            <h2>Mes informations personnelles</h2>
+            <h2>Mes informations personnelles de contact</h2>
             <p>Mon email : {{profileConnected.email}} </p>
             <p *ngIf="profileConnected.phone1!=null" >Mon numéro de téléphone portable : {{profileConnected.phone1}} </p>
             <p *ngIf="profileConnected.phone2!=null" >Mon numéro de téléphone fixe : {{profileConnected.phone2}} </p>
@@ -54,7 +56,25 @@
             <div class='col-12 border photo'>
                 <p *ngIf="profileConnected.motivations !=null;then photo else Nophoto"></p>
                 <ng-template #photo></ng-template>
-                <ng-template #Nophoto>Merci de télécharger une photo</ng-template>
+                <ng-template #Nophoto>
+
+                    <form [formGroup]="myForm" (ngSubmit)="submit()">
+                        <div class="form-group">
+                            <label for="file">Merci de télécharger une photo</label>
+                            <input 
+                                formControlName="file"
+                                id="file" 
+                                type="file" 
+                                class="form-control"
+                                (change)="onFileChange($event)">
+                            <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                                <div *ngIf="f.file.errors.required">Vous devez selectionner un fichier</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Envoyer</button>
+                    </form>
+
+                </ng-template>
             </div>
 
             <div class='col-12 border cv'>
@@ -63,6 +83,5 @@
                 <ng-template #Nocv>Merci de télécharger votre CV</ng-template>
             </div>
         </div>
-
     </div> 
 </div>

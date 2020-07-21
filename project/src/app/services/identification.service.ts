@@ -14,6 +14,7 @@ export class IdentificationService{
                 .post('http://localhost:8888/API-aden/index.php?action=back!session',JSON.stringify($email) )
                 .subscribe(
                     (response) =>{
+                        console.log(response[0].ID)
                         sessionStorage.setItem('ID_connected', response[0].ID);
                         sessionStorage.setItem('email_connected', $email);
                         console.log(sessionStorage.getItem('ID_connected'));
