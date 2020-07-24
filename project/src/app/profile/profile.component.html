@@ -1,6 +1,6 @@
 <div class="container" *ngIf="profileConnected">
     
-    <div class='title d-flex align-items-center justify-content-around'>
+    <div class='title d-flex align-items-center justify-content-around p-0 m-0'>
         <p>{{profileConnected.name}} {{profileConnected.firstName}}</p>
         <p *ngIf="profileConnected.advice !=null;then advice else Noadvice"></p>
                 <ng-template #advice> Nom du type</ng-template>
@@ -10,7 +10,7 @@
 
     <div class="row" >
 
-        <div class='resume mt-5 border col-8 '>
+        <div class='resume mt-5 col-8 '>
             <h2>Mon Projet : </h2> 
             <p>Formations {{profileConnected.training}} en {{profileConnected.funding}}  </p>
 
@@ -52,15 +52,22 @@
             <p *ngIf="profileConnected.phone2!=null" >Mon numéro de téléphone fixe : {{profileConnected.phone2}} </p>
         </div>
 
-        <div class='widgetRight mt-5 border col-4'>
-            <div class='col-12 border photo'>
-                <p *ngIf="profileConnected.motivations !=null;then photo else Nophoto"></p>
-                <ng-template #photo></ng-template>
+        <div class='widgetRight mt-5 col-4'>
+            <div class='col-12 photo'>
+                <p *ngIf="profileConnected.photo !=null && !divChangePicture ;then photo else Nophoto"></p>
+                <ng-template #photo>
+                    <div class='mb-3 container_photo text-center'>
+                        <img src="http://localhost:8888/API-aden/upload/{{profileConnected.photo}}" alt="">
+                        <i class="changePicture" (click)="changePicture()">Modifier votre photo</i>
+                    </div>
+                </ng-template>
                 <ng-template #Nophoto>
 
                     <form [formGroup]="myForm" (ngSubmit)="submit()">
                         <div class="form-group">
-                            <label for="file">Merci de télécharger une photo</label>
+                            <label for="file">Merci de télécharger une photo format JPG/JPEG
+                                <i>dimension recommandée : 3,5 * 4,5 cm (photo d'identité) / 252 * 324 px</i>
+                            </label>
                             <input 
                                 formControlName="file"
                                 id="file" 
@@ -70,14 +77,21 @@
                             <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
                                 <div *ngIf="f.file.errors.required">Vous devez selectionner un fichier</div>
                             </div>
+                            <div *ngIf="alertSizePhoto" class="alert alert-danger">
+                                Trop Volumineux
+                            </div>
+                            <div *ngIf="alertTypePhoto" class="alert alert-danger">
+                                Format pas pris en charge
+                            </div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Envoyer</button>
+                        <button [ngClass] ="{'colorDisabled': myForm.invalid,'colorNotDisabled': !myForm.invalid  }" class="btn text-primary" type="submit" [disabled]="myForm.invalid && (!alertTypePhoto || !alertSizePhoto)" >Envoyer</button>
                     </form>
+                    <i *ngIf="divChangePicture" class="changePicture" (click)="cancelchangePicture()">Annuler la modification</i>
 
                 </ng-template>
             </div>
 
-            <div class='col-12 border cv'>
+            <div class='col-12 cv'>
                 <p *ngIf="profileConnected.cv !=null;then cv else Nocv"></p>
                 <ng-template #cv></ng-template>
                 <ng-template #Nocv>Merci de télécharger votre CV</ng-template>

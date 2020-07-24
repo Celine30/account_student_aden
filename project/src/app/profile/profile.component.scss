@@ -6,4 +6,35 @@
 
   .photo, .cv{
     height: 50%;
+    margin-bottom:25px!important
   }
+
+  .container_photo{
+    height: 100%;
+  }
+
+  .changePicture:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(1px 1px 3px black)
+          drop-shadow(2px 2px 0px rgba(0,0,0,.3));
+  }
+  .colorDisabled{
+    border: none;
+    background:lightblue;
+    color:white !important
+  }
+
+  .colorNotDisabled{
+    border: none;
+    background:lightblue;
+    color:#333 !important
+  }
+ 
+ 
