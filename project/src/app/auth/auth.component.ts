@@ -38,6 +38,7 @@ export class AuthComponent implements OnInit {
         this.authstatus = response;
         this.error = !response;
         if(response){
+          sessionStorage.setItem('email_connected', this.AuthForm.value.identifiant);
           this.identificationService.openSession(this.AuthForm.value.identifiant);
           this.router.navigate(['profile']);
         }

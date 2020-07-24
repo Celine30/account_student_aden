@@ -15,9 +15,11 @@ export class IdentificationService{
                 .subscribe(
                     (response) =>{
                         console.log(response[0].ID)
-                        sessionStorage.setItem('ID_connected', response[0].ID);
+                        sessionStorage.setItem('ID_connected', response[0]['ID']);
+                        sessionStorage.setItem('name_connected', response[0]['name']);
                         sessionStorage.setItem('email_connected', $email);
                         console.log(sessionStorage.getItem('ID_connected'));
+                        console.log(sessionStorage.getItem('name_connected'));
                         console.log(sessionStorage.getItem('email_connected'));
                     },
                     (error) => {
