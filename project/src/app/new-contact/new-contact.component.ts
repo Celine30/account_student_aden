@@ -55,7 +55,8 @@ export class NewContactComponent implements OnInit {
 
   onSubmitForm(){
     this.NewEntreprise = this.AddForm.value;
-    this.NewEntreprise['ID_student']=localStorage.getItem('ID_connected')
+    this.NewEntreprise['ID_student']=sessionStorage.getItem('ID_connected')
+    console.log(this.NewEntreprise)
     this.httpClient
     .post('http://localhost:8888/API-aden/index.php?action=back!newEntreprise', JSON.stringify(this.NewEntreprise))
     .subscribe(
