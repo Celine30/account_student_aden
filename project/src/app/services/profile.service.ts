@@ -51,7 +51,7 @@ export class ProfileService{
                         response[0].training,
                         response[0].funding,
                         response[0].password,
-                        response[0].cv, 
+                        response[0].CV, 
                         response[0].photo,
                         response[0].advice)
                     console.log(this.ProfileZoom)
