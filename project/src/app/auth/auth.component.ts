@@ -48,8 +48,9 @@ export class AuthComponent implements OnInit {
 
   onsignIn(){
     const formValue = this.AuthForm.value;
+    // console.log(formValue.identifiant)
     this.authService.signIn(formValue);
-    }
+  }
     
 
 }

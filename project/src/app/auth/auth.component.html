@@ -1,31 +1,35 @@
-<div class="container_form_auth">
+ <div class="container_g">  
+     <div class="container_form_auth">
 
-    <h2 class="col-12 text-center">Identification</h2>
+        <h1 class="col-12 text-center">Authentification  </h1>
 
-    <div class="container-form text-center">
-        <form [formGroup]="AuthForm" (ngSubmit)="onsignIn()">
+        <div class='separator'></div>
 
-        <mat-form-field appearance="fill" class="full-widthB">
-            <mat-label>Identifiant (votre adresse mail)</mat-label>
-            <input matInput formControlName="identifiant" >
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="full-widthB">
-            <mat-label>Mot de passe</mat-label>
-            <input matInput formControlName="mdp" [type]="hide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
+        <div class="container-form text-center">
+            <form [formGroup]="AuthForm" (ngSubmit)="onsignIn()">
 
-        <br>
-        <button mat-raised-button color="primary" type=submit class="mb-5" >Envoyer les informations</button>
-        <div *ngIf="error" class="row col-6 m-auto alert alert-danger">Erreur d'identification</div>
-        </form>
-        
-    </div>
+            <mat-form-field appearance="fill" class="full-widthB">
+                <mat-label>Identifiant (votre adresse mail)</mat-label>
+                <input matInput formControlName="identifiant" >
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="full-widthB">
+                <mat-label>Mot de passe</mat-label>
+                <input matInput formControlName="mdp" [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
 
-    <div class="text-center">
-        <a routerLink="/newProfil">Créer un Nouveau profil</a>
+            <br>
+            <button mat-raised-button type=submit class="mt-5 mb-5" >Envoyer les informations</button>
+            <div *ngIf="error" class="row col-6 m-auto alert alert-danger">Erreur d'identification</div>
+            </form>
+            
+        </div>
+
+        <div class="text-center">
+            <a routerLink="/newProfil">Créer un Nouveau profil</a>
+        </div>
     </div>
 </div>
