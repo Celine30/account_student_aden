@@ -27,6 +27,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class FollowComponent implements OnInit {
 
+  // profileConnected
+
   formationsSuiviesSubscription : Subscription;
 
   displayedColumns: string[] = ['position', 'entreprise', 'contact', 'outils', 'relaunch','response'];
@@ -45,11 +47,13 @@ export class FollowComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.profileConnected = sessionStorage.getItem('email_connected')
     this.dataSource.sort = this.sort;
     this.FormationService.getFormationsSuiviesToServer(sessionStorage.getItem('ID_connected'));
     this.formationsSuiviesSubscription = this.FormationService.formationsSuiviesSubject.subscribe(
       (response) => {
         this.dataSource.data = response;
+        // console.log(response)
       });
     this.FormationService.emitFormationsSuiviesSubject();
     

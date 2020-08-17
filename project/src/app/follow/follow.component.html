@@ -1,61 +1,68 @@
-<h1 class="mat-display-1">Vos contacts</h1>
+<div class="container_g">
 
+  <app-header></app-header>
 
-<div class="container">
+  <div class="container mt-5">
+      
+    <div class='mt-5'>
+      <h2 >Vos contacts</h2>
+    </div>
 
-    <button mat-stroked-button class="mb-5" color="primary" routerLink="/newContact">Ajouter un suivi d'entreprise</button>
+    <div class="container_responsif">
+
+      <p class='withoutshadow' routerLink="/newContact">Ajouter un suivi d'entreprise</p>
+     
+      <table mat-table [dataSource]="dataSource" matSort class="  mat-elevation-z8">
+          
+          <ng-container matColumnDef="position" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> N° </th>
+            <td mat-cell *matCellDef="let element" data-label="Position"> {{element.position+1}}-{{element.date_added | date:'dd-MM-yyyy'}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="entreprise">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Entreprise </th>
+            <td mat-cell *matCellDef="let element" data-label="Entreprise"> {{element.entreprise | uppercase }} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="contact">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom du contact </th>
+            <td mat-cell *matCellDef="let element" data-label="Contact"> {{element.contact}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="outils">
+            <th mat-header-cell *matHeaderCellDef> Contacts </th>
+            <td mat-cell *matCellDef="let element" data-label="Outils">
+              <i class="link" *ngFor="let link of element.outils">
+                  <i *ngIf="link.mode_contact =='tel' "> {{link.mode_contact}} </i>
+                  <i *ngIf="link.mode_contact =='mail' "> {{link.mode_contact}} </i>
+                  <i *ngIf="link.mode_contact =='likedIn' "> {{link.mode_contact}} </i> 
+              </i> 
+          </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="relaunch">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Derniere relance </th>
+            <td mat-cell *matCellDef="let element" data-label="Relance"> {{element.relaunch| date:'dd/MM/yyyy'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="response" >
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Reponse </th>
+              <td mat-cell *matCellDef="let element" data-label="Reponse"> {{element.response}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+          (click)="directionUnit(row)">
+          </tr>
+
+      </table>
+
+    </div>
     
-
-
-    <table mat-table [dataSource]="dataSource" matSort class=" container mat-elevation-z8">
-        
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> N° </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="entreprise">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Entreprise </th>
-          <td mat-cell *matCellDef="let element"> {{element.entreprise | uppercase }} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="contact">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom du contact </th>
-          <td mat-cell *matCellDef="let element"> {{element.contact}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="outils">
-          <th mat-header-cell *matHeaderCellDef> Contacts </th>
-          <td mat-cell *matCellDef="let element">
-            <i class="link" *ngFor="let link of element.outils">
-                <i *ngIf="link.mode_contact =='mail' "> {{link.mode_contact}} </i>
-                <i *ngIf="link.mode_contact =='likedIn' "> {{link.mode_contact}} </i> 
-            </i> 
-        </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="relaunch">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Derniere relance </th>
-          <td mat-cell *matCellDef="let element"> {{element.relaunch| date:'dd/MM/yyyy'}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="response">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Reponse </th>
-            <td mat-cell *matCellDef="let element"> {{element.response}} </td>
-        </ng-container>
-
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-        (click)="directionUnit(row)">
-    </tr>
-    </table>
-
-
-
-
+  </div>
 
 </div>
+
 
 
 

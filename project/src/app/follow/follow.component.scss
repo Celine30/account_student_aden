@@ -3,12 +3,64 @@ h1{
     margin-top: 20px!important;
     }
 
-table {
+.mat-table {
     width: 100%;
 }
     
-i.link{
+i.link {
     text-decoration: none;
     font-style: normal;
+}
+
+p.withoutshadow {
+    text-shadow: none!important;
+}
+
+p.withoutshadow:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 960px) {
+    table {
+        border: 0;
+        vertical-align: middle
+    }
+    tr.mat-row, tr.mat-footer-row{
+        height: 100%;
+    }
+    table .mat-header-cell, .mat-header-row.cdk-header-row.ng-star-inserted {
+        display: none;
+    }
+    .mat-table .mat-row {
+        border-bottom: 5px solid #ddd;
+        display: block;
+    }
+    .mat-table .mat-cell {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: 1em;
+        text-align: right;
+        height:20px;
+        margin-bottom: 4px;
+        padding-right: 24px;
+    }
+    .mat-table .mat-cell:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: normal;
+        font-size: .85em;
+        padding-left: 24px;
+    }
+    td.mat-cell:first-of-type{
+        padding-left: 0;
+        margin-top: 10px;
+    }
+    td.mat-cell:last-child {
+        border-bottom: 0!important;
+    }
+
+    tr:last-child {
+        border-bottom: none!important;
+    }
 
 }
