@@ -1,1 +1,26 @@
-<p>unit-follow works!</p>
+<div class="container_g">
+
+    <app-header></app-header>
+
+    <div class="container mt-5">
+
+        
+        <div *ngIf="informationsEntreprise">
+            <div class='mt-5 d-flex'>
+                <h2 >{{informationsEntreprise['entreprise']}}</h2>
+                <p>{{informationsEntreprise['response']}}</p>
+            </div>
+
+            <p>Nom du Contact : {{informationsEntreprise['name_contact']}}</p>
+            <p>Date d'ajout de l'entreprise : {{informationsEntreprise['date_added']}}</p>
+            <p>Les outils de contact</p>
+            <p *ngFor="let outil of informationsEntreprise['outils']">{{outil.mode_contact}} = {{outil.contact}}</p>
+           
+            <p *ngFor="let contact of informationsEntreprise['contact']">{{contact.contact}} - {{contact.date}} - {{contact.response}}</p>
+        </div>
+
+    </div>
+    
+    
+
+</div>
