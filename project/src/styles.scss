@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+$primaryColor:rgb(0,157,165);
 
 html, body { height: 100%; }
 
@@ -11,7 +12,34 @@ h1{
     text-align: center;
     margin-top: 20px!important;
     }
+
+h2:not(.withoutborder){
+    color:$primaryColor;
+    border-bottom: $primaryColor 1px solid;
+    text-shadow: 1px 2px white, -1px -1px #444;
+    }
+
+.entete{
+    color:$primaryColor;
+    border-bottom: $primaryColor 1px solid;
+    text-shadow: 1px 2px white, -1px -1px #444;
+    padding-bottom: 0!important;
+    margin-bottom: 20px!important;
+}
     
-table {
+mat-table, table {
     width: 100%;
+    padding-bottom: 0!important;
+    margin-bottom: 0px!important;
+}
+
+.container_g{
+    margin-top: 50px;
+}
+
+@media screen and (max-width: 1000px){
+    .container_g{
+        min-height: 84vh;
+        margin-top: 30px;
+    }
 }

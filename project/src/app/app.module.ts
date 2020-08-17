@@ -23,7 +23,8 @@ import { ProfileService } from './services/profile.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NewProfilComponent } from './new-profil/new-profil.component';
 import { NewContactComponent } from './new-contact/new-contact.component';
-import { UnitFollowComponent } from './unit-follow/unit-follow.component'
+import { UnitFollowComponent } from './unit-follow/unit-follow.component';
+import { HeaderComponent } from './header/header.component'
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { UnitFollowComponent } from './unit-follow/unit-follow.component'
     NewProfilComponent,
     NewContactComponent,
     UnitFollowComponent,
+    HeaderComponent,
  
   ],
   imports: [
@@ -52,7 +54,7 @@ import { UnitFollowComponent } from './unit-follow/unit-follow.component'
     AuthService,
     IdentificationService,
     FormationService,
-    ProfileService
+    ProfileService,
   ],
   bootstrap: [AppComponent]
 })

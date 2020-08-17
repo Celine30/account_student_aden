@@ -13,9 +13,9 @@ import { UnitFollowComponent } from './unit-follow/unit-follow.component'
 
 const routes: Routes = [
   { path:'', component : AuthComponent },
-  { path:'profile', component : ProfileComponent },
+  { path:'profile', canActivate:[AuthGuard],component : ProfileComponent },
   { path:'meeting', canActivate:[AuthGuard], component : MeetingComponent },
-  { path:'follow', canActivate:[AuthGuard],  component : FollowComponent },
+  { path:'follow',component : FollowComponent },
   { path:'newProfil', component : NewProfilComponent },
   { path:'newContact',  canActivate:[AuthGuard], component : NewContactComponent },
   { path:'auth', component : AuthComponent },

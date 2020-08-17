@@ -18,7 +18,7 @@ export class AuthService {
                 .get('http://localhost:8888/API-aden/index.php?action=back!post&identifiant='+formValue.identifiant+'&mdp='+formValue.mdp)
                 .subscribe(
                         (response) =>{
-                            console.log(response);
+                            // console.log(response);
                             if (response == 'connexion'){
                                 this.isAuth = true;
                                 this.emitPostSubject ()

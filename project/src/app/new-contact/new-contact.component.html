@@ -22,7 +22,6 @@
 
     <div formArrayName = 'contact_tools' class="form-group mt-5">
         <h3>Les moyens de contact</h3>
-
         <div class="form-group" *ngFor="let toolsControl of getTools().controls; let i = index">
             <ng-container [formGroupName]="i"  >
                 <mat-form-field>
@@ -40,6 +39,7 @@
         </div>
         <button type="button" class="btn btn-dark" (click)="onAddTools()" [disabled]="AddForm.invalid" >Ajouter une coordonnée</button>
     </div>
+
     <br>
 
     <div class='btn_send_order'>
