@@ -11,7 +11,7 @@
 
     <mat-sidenav-content>
 
-        <mat-toolbar color="primary" class="navbar_material mini">
+        <mat-toolbar class="navbar_material mini">
             <img  src="assets/logo-menu.png" alt="">
             <div>
                 <span *ngIf="!connected" class="link_menu" class='disabled' >Menu</span>
@@ -19,7 +19,7 @@
             </div>
         </mat-toolbar>
 
-        <mat-toolbar color="primary" class="navbar_material maxi">
+        <mat-toolbar class="navbar_material maxi">
             <img  src="assets/logo-menu.png" alt="">
             <div *ngIf="connected">
                 <span class="link_menu maxi" routerLink="profile"><span class="material-icons">perm_identity</span> Mon Profil</span>

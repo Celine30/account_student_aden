@@ -63,16 +63,15 @@ mat-sidenav-container{
         } 
     }
     mat-toolbar{
+        background-color: $primaryColor;
         img{
             height: 50px;
         }
     }
 
     .container_bloc{
-        min-height: 87vh;
-        padding-top: 50px;
+        min-height: 86.5vh;
     }
-    
 }    
 
 @media screen and (max-width: 1000px){
@@ -82,12 +81,16 @@ mat-sidenav-container{
     mat-toolbar.navbar_material.maxi{
         visibility: hidden
     }
+    .container_bloc{
+        min-height: 83vh!important;
+    }
 
 }
 
 @media screen and (max-width: 600px){
     mat-toolbar{
-       height: 64px;
+        height: 64px;
     }
+
 
 }
