@@ -1,4 +1,11 @@
 
+@import '../../styles.scss';
+
+mat-toolbar{
+    background-color:$primaryColor;
+    margin-top: 20px;
+}
+
 @media screen and (max-width: 600px){
     mat-toolbar{
        height: 64px;
