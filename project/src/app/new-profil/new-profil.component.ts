@@ -4,13 +4,24 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { HttpClientModule, HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http'
 import { FormationUnit} from '../formationUnit';
-import { controlPass } from '../controlPass';
+import { controlPass } from '../validator/controlPass';
+import { validatorEmail } from '../validator/controlMail';
 import { ProfilUnit } from '../profilUnit'
 import { formatDate } from '@angular/common';
-import { retry } from 'rxjs/operators'
+import { retry, map } from 'rxjs/operators'
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { IdentificationService } from '../services/identification.service'
+import { IdentificationService } from '../services/identification.service';
+
+// const validatorEmail =(httpClient : HttpClient ) => (c:FormGroup) => {
+//   return httpClient 
+//   .post('http://localhost:8888/API-aden/index.php?action=back!controlEmail', JSON.stringify(c.value))
+//   .pipe(
+//     map((result) => {
+//       return result ? null : {invalidAsync: true}
+//     })
+//   )  
+// }
 
 
 @Component({
@@ -51,16 +62,19 @@ export class NewProfilComponent implements OnInit {
     private httpClient : HttpClient,
     private router: Router, 
     private authService: AuthService,
-    private identificationService : IdentificationService ) {
+    private identificationService : IdentificationService) {
     this.dateAdapter.setLocale('fr'); 
   }
 
+ 
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
       name: ['', [Validators.required , Validators.pattern('.+[^0-9]')]],
       firstname: ['', [Validators.required , Validators.pattern('.+[^0-9]')]],
-      email: ['', [Validators.required , Validators.pattern('^[A-Za-z0-9._-]+@[A-Za-z0-9]+[.][a-z]{2,6}')]],
+      email: ['', [Validators.required , Validators.pattern('^[A-Za-z0-9._-]+@[A-Za-z0-9]+[.][a-z]{2,6}')], validatorEmail(this.httpClient) ],
+
+      // email: ['', [Validators.required , Validators.pattern('^[A-Za-z0-9._-]+@[A-Za-z0-9]+[.][a-z]{2,6}')], validatorEmail(this.httpClient)],
       phone1: ['', [Validators.pattern('^(0[6-7]{1})([/ _.-]?[0-9]{2}){4}')]],
       phone2: ['', [Validators.pattern('^(0[1-59]{1})([/ _.-]?[0-9]{2}){4}')]],
       address: ['', Validators.required],
@@ -95,6 +109,7 @@ export class NewProfilComponent implements OnInit {
     } , { validators: controlPass });
   
     this.EditFormation();
+
   }
 
   get f() { return this.firstFormGroup.controls; }

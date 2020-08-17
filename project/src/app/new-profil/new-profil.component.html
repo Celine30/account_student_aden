@@ -196,10 +196,13 @@
                     <br>
                     <mat-form-field class='mr-5'>
                         <mat-label>Email</mat-label>
-                        <input matInput placeholder="email" formControlName="email" required>
+                        <input matInput placeholder="email" formControlName="email" name="email" id="email" required>
                         <mat-hint *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)&&f.email.hasError('pattern')" class=" text-left text-danger mess_error" role="alert">
                             adresse mail invalide
                         </mat-hint>
+                        <mat-error *ngIf="f.email.hasError('invalidAsync')">
+                            cet email existe <strong>dejà</strong>
+                        </mat-error>
                     </mat-form-field>
                     <br>
                     <mat-form-field class='mr-5'>
