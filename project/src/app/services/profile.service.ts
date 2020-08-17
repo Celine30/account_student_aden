@@ -23,7 +23,7 @@ export class ProfileService{
             .subscribe(
                 (response) =>{
                     this.ProfileZoom = response;
-                    console.log(response[0].training)
+                    // console.log(response[0].training)
                     this. ProfileZoom = new ProfilUnit(
                         response[0].name,
                         response[0].firstName,
@@ -54,7 +54,7 @@ export class ProfileService{
                         response[0].CV, 
                         response[0].photo,
                         response[0].advice)
-                    console.log(this.ProfileZoom)
+                    // console.log(this.ProfileZoom)
                     this.emitProfileZoomSubject();
                 },
                 (error) => {

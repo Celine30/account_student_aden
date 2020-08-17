@@ -44,8 +44,23 @@ export class ProfileComponent implements OnInit {
     return this.myFormCv.controls;
   }
 
+  onResetCv(): void {
+    this.resetFormCv();
+  }
+
+  resetFormCv(value: any = undefined): void {
+    this.myFormCv.reset(value);
+  }
+
+  onReset(): void {
+    this.resetForm();
+  }
+
+  resetForm(value: any = undefined): void {
+    this.myForm.reset(value);
+  }
+
   ngOnInit(): void {
-    console.log('Je suis à profile avec' + sessionStorage.getItem('email_connected'));
     this.ProfileService.getProfileUnitToServer(sessionStorage.getItem('email_connected'));
     this.profileZoomSubscription = this.ProfileService.ProfileZoomSubject.subscribe(
       (response) => {
@@ -56,13 +71,20 @@ export class ProfileComponent implements OnInit {
     }
   
   photoURLCv(X) {
-      return this.sanitizer.bypassSecurityTrustResourceUrl("http://localhost:8888/API-aden/upload/"+X+"#toolbar=0");
+      return this.sanitizer.bypassSecurityTrustResourceUrl("http://localhost:8888/API-aden/upload/"+X+"#toolbar=auto");
     }
   
+  onLoad(){
+    // console.log('coucou');
+    // var iframe = document.getElementById("iframepdf");
+    // var iWindow = (<HTMLIFrameElement> iframe).contentWindow;
+    // console.log(iWindow)
+  }
+
   onFileChange(event) {
     this.alertSizePhoto = false
     this.alertTypePhoto = false
-    console.log(event)
+    // console.log(event)
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.myForm.patchValue({
@@ -81,8 +103,8 @@ export class ProfileComponent implements OnInit {
         this.alertSizePhoto = false
       }
     }
-    console.log(this.alertTypePhoto)
-    console.log(this.alertSizePhoto)
+    // console.log(this.alertTypePhoto)
+    // console.log(this.alertSizePhoto)
   }
 
   onFileChangeB(event) {
@@ -105,8 +127,8 @@ export class ProfileComponent implements OnInit {
         this.alertSizeCv = false
       }
     }
-    console.log(this.alertTypeCv)
-    console.log(this.alertSizeCv)
+    // console.log(this.alertTypeCv)
+    // console.log(this.alertSizeCv)
   }
 
   submit(){
@@ -129,8 +151,8 @@ export class ProfileComponent implements OnInit {
           console.log(response);
           this.profileConnected['photo']=response ;
           this.sendPicture(response) ; 
-          this.divChangePicture = false;  
-
+          this.divChangePicture = false; 
+          this.onReset();
         })
     }
   }
@@ -155,11 +177,10 @@ export class ProfileComponent implements OnInit {
           console.log(response);
           this.profileConnected['CV']=response ;
           this.sendCv(response) ; 
-          
           this.variableCV=this.sanitizer.bypassSecurityTrustResourceUrl("http://localhost:8888/API-aden/upload/"+this.profileConnected['CV'] +"#toolbar=0")
           console.log(this.variableCV)
-          this.divChangeCv = false;  
-
+          this.divChangeCv = false; 
+          this.onResetCv();
         })
     }
   }
@@ -181,7 +202,7 @@ export class ProfileComponent implements OnInit {
     }
 
   changePicture(){
-    console.log('coucou')
+
     this.divChangePicture = true;
   }
 
