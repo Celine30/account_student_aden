@@ -1,0 +1,10 @@
+<div class="container" *ngIf="profileConnected">
+        
+    <div class='title d-flex align-items-center justify-content-between p-3 m-0'>
+        <h1>{{profileConnected.name}} {{profileConnected.firstName}}</h1>
+        <p *ngIf="profileConnected.advice !=null;then advice else Noadvice"></p>
+                <ng-template #advice> Nom du type</ng-template>
+                <ng-template #Noadvice>En  attente d'attachement de conseiller</ng-template>
+    </div>
+
+</div>
